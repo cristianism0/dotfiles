@@ -1,0 +1,115 @@
+#+title: EMACS Configs from Scratch
+#+author: cristian
+
+* EMACS Configurations
+
+** Starting Org-Babel
+#+begin_src example
+(org-babel-load-file
+  (expand-file-name "config.org" user-emacs-directory))
+#+end_example
+
+** Hide startup message::
+#+begin_src emacs-lisp
+(setq inhibit-startup-message t)
+#+end_src
+  
+* User Interface (UI) and User Experience (UX)
+#+begin_src emacs-lisp
+  (tool-bar-mode   -1)	       ; Hide tools bar
+  (menu-bar-mode   -1)	       ; Hide menu bar
+  (scroll-bar-mode -1)	       ; Hide scroll bar   
+  (tooltip-mode    -1)	       ; Hide tooltips
+  (set-fringe-mode  5)	       ; Frame Edges (5px)
+  (save-place-mode +1)	       ; Save cursor pos
+  (recentf-mode    +1)	       ; Recent Files
+  (savehist-mode   +1)	       ; Enable history saving
+  (global-hl-line-mode t)	       ; Enable highlight line
+  (delete-selection-mode t)          ; Delete a selected line if write on in
+  (global-visual-line-mode t)	       ; Line break
+  
+#+end_src
+** Number Lines
+#+begin_src emacs-lisp
+(global-display-line-numbers-mode 1)
+(setq display-line-numbers-type 'relative) 
+(dolist (mode '(org-mode-hook
+                vterm-mode-hook
+                term-mode-hook
+                shell-mode-hook
+                eshell-mode-hook))
+  (add-hook mode (lambda () (display-line-numbers-mode 0))))
+#+end_src
+
+** Fonts
+#+begin_src emacs-lisp
+(set-face-attribute 'default nil :font "Fira Code" :height 150)
+#+end_src
+
+** Allow external modifications
+#+begin_src emacs-lisp
+  (global-auto-revert-mode t)
+#+end_src
+
+** Auto Close Pair
+#+begin_src emacs-lisp
+(eletric-pair-mode)
+#+end_src
+
+
+* Backup Files Directory
+#+begin_src emacs-lisp
+(setq backup-directory-alist `(("." . "~/.emacs-saves")))
+#+end_src
+
+** TODO Themes (temporaly)
+#+begin_src emacs-lisp
+(load-theme 'modus-vivendi t)
+#+end_src
+
+** Custom Functions 
+#+begin_src emacs-lisp
+(defun cst-new-buffer ()
+  "Create a new buffer `blank'."
+ (interactive)
+ (let ((cst/buf (generate-new-buffer "blank")))
+  (switch-to-buffer cst/buf)
+  (funcall initial-major-mode)
+ (setq buffer-offer-save t)
+  cst/buf)) 
+#+end_src
+
+** Start Mode
+#+begin_src emacs-lisp
+(setq initial-major-mode 'prog-mode)
+(setq initial-buffer-choice 'cst-new-buffer)
+#+end_src
+
+
+* Packages
+** Require and Update Package.el
+#+begin_src emacs-lisp
+  (require 'package)         
+  (setq package-archives '(("melpa" . "https://melpa.org/packages/")
+                          ("elpa"  . "https://elpa.gnu.org/packages/")))
+  (package-initialize)
+  (unless package-archive-contents
+    (package-refresh-contents))
+#+end_src
+
+** use-package
+#+begin_src emacs-lisp
+  (unless (package-installed-p 'use-package)
+    (package-install 'use-package))
+  (require 'use-package)
+  (setq use-package-always-ensure t)
+#+end_src
+
+** Packages
+
+*** Rainbow Mode
+#+begin_src emacs-lisp
+  (use-package rainbow-mode
+  :diminish
+  :hook org-mode prog-mode)		; Actives on: Org files and Programming files
+#+end_src
