@@ -1,12 +1,17 @@
+;; Starting Org Babel and link to config.org
 (require 'org)
 (org-babel-load-file
   (expand-file-name
     "config.org"
     user-emacs-directory))
 
+;; Hide startup message
 (setq inhibit-startup-message t)
 
+;; Fullscrenn
+(add-to-list 'default-frame-alist '(fullscreen . maximized))
 
+;; If custom.el
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
