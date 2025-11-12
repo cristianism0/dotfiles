@@ -23,12 +23,12 @@
   (save-place-mode +1)	                ; Save cursor position
   (recentf-mode    +1)	                ; Recent Files
   (savehist-mode   +1)	                ; Enable history saving
-  (global-hl-line-mode t)	        ; Enable highlight line
-  (delete-selection-mode t)             ; Delete a selected line if write on it
-  (global-visual-line-mode t)           ; Line break
+  (global-hl-line-mode t)	                ; Enable highlight line
+  (delete-selection-mode t)                 ; Delete a selected line if write on it
+  (global-visual-line-mode t)               ; Line break
   (setq-default indent-tabs-mode nil)	; Space indentations
-  (electric-pair-mode 1)                ; Enable auto pair brackets
-  (transient-mark-mode 1)               ; Shows the active region
+  (electric-pair-mode 1)                    ; Enable auto pair brackets
+  (transient-mark-mode 1)                   ; Shows the active region
 #+end_src
 
 ** Number Lines
@@ -232,8 +232,8 @@ Better performance for Eglot - LSP built-in. (Emacs > 29, use emacs --version on
   :config
   (progn
     (setq neo-theme (if (display-graphic-p) 'nerd-icons 'arrow))
-    (global-set-key [kbd "C-;"] 'neotree-toggle))) 
-#+end_src 
+    (global-set-key [f8] 'neotree-toggle)))
+#+end_src
 
 ** Magit
 #+begin_src emacs-lisp
@@ -263,3 +263,4 @@ sudo apt install cmake libtoll-bin libvterm libvterm-dev
 (use-package vterm
     :ensure t)
 #+END_SRC
+
