@@ -21,5 +21,6 @@ require('lazy').setup({
     require 'plugins.lualine',
     require 'plugins.telescope',
     require 'plugins.lsp',
-
+    require 'plugins.fugitive',
+    require 'plugins.autopair'    
 })
