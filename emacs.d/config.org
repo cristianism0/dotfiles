@@ -1,11 +1,11 @@
 #+title: EMACS Config
 #+author: cristian
 
-** Starting Org-Babel
+** Starting Org-Babel (if you want to enable this file as your configuration.)
 #+begin_src example
 (org-babel-load-file
   (expand-file-name "config.org" user-emacs-directory))
-#+end_example
+#+end_src example
 
 ** Hide startup message::
 #+begin_src emacs-lisp
@@ -23,7 +23,6 @@
   (save-place-mode +1)	                ; Save cursor position
   (recentf-mode    +1)	                ; Recent Files
   (savehist-mode   +1)	                ; Enable history saving
-  (global-hl-line-mode t)	                ; Enable highlight line
   (delete-selection-mode t)                 ; Delete a selected line if write on it
   (global-visual-line-mode t)               ; Line break
   (setq-default indent-tabs-mode nil)	; Space indentations
@@ -55,18 +54,18 @@
 
 ** Doom Themes 
 #+begin_src emacs-lisp
-  (use-package doom-themes
-    :ensure t
-    :custom
+   (use-package doom-themes
+     :ensure t
+     :custom
     ;; Global settings (defaults)
-    (doom-themes-enable-bold t)   
-    (doom-themes-enable-italic t)  
+      (doom-themes-enable-bold t)   
+      (doom-themes-enable-italic t)  
 
-    (doom-themes-org-config))
+      (doom-themes-org-config))
 
   
     ;; Choose theme here:
-    (load-theme 'doom-moonlight t)
+    (load-theme 'doom-tokyo-night t)
 #+end_src
 
 ** Doom Modeline
@@ -218,7 +217,6 @@ Auto complete.
 
 ** Eglot Booster
 Better performance for Eglot - LSP built-in. (Emacs > 29, use emacs --version on terminal)
-
 #+begin_src emacs-lisp
 (use-package eglot-booster
 	:after eglot
@@ -249,13 +247,13 @@ Enable spellcheck for most langs.
   :init (global-flycheck-mode))
 #+end_src
 
-** Vterm
+** Vterm 
 Requirements, available on [[https://github.com/akermu/emacs-libvterm?tab=readme-ov-file#requirements][vterm repository]]:
 - cmake
 - libtoll-bin
 - libvterm OR libvterm-dev
 
-#+BEGIN_SRC shell
+#+BEGIN_SRC text
 sudo apt install cmake libtoll-bin libvterm libvterm-dev
 #+END_SRC
 
@@ -263,4 +261,3 @@ sudo apt install cmake libtoll-bin libvterm libvterm-dev
 (use-package vterm
     :ensure t)
 #+END_SRC
-
