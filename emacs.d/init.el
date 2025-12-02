@@ -4,6 +4,9 @@
 ;;; Open in fullscreen
 (add-to-list 'initial-frame-alist '(fullscreen . maximized))
 
+;;; Show battery
+(display-battery-mode 1)
+
 ;;; Remove backup files
 (setq make-backup-files nil)
 
