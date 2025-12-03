@@ -1,4 +1,5 @@
 -- Set leader key (default '\' backslash)
+-- Alt: space
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 

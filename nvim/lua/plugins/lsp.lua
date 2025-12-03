@@ -53,14 +53,6 @@ return {
                     }
                 end,
 
-                --["ruff"] = function()
-                --  local lspconfig = require("lspconfig")
-                --lspconfig.pyright.setup {
-                --      capabilities = capabilities,
-                --      on_attach = on_attach,
-                --  }
-                --end,
-                
                 ["clangd"] = function()
                     local lspconfig = require("lspconfig")
                     lspconfig.clangd.setup {
