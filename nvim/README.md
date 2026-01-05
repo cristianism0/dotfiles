@@ -1,19 +1,32 @@
 # Dotfiles NVIM
 
-For LSP you will need `npm` package tool from Node.js.
+I use Fedora, so, we need to have LSP servers.
 
-Check if `npm` is installed:
+We currently use:
+- Lua (default)
+- Python 
+- Rust
+- C
+- Go
+
+## Installing
+1. For Python, we will use `Ruff`, because there's a package of it on `dnf`:
 ```bash
-which npm
+sudo dnf upgrade
+sudo dnf install ruff
 ```
 
-If not, install with:
+2. For Rust we can use Rust Analyzer. It's already on the default install of Rust.
 ```bash
-sudo apt install npm
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+``` 
+
+3. For C, like Ruff, we can install using dnf too:
+```bash
+sudo dnf install clangd
 ```
 
-The `npm` will install `Pyright` and `JS/Typescript` LSP.
-For Rust, it's necessary install in their site.
-
-
-
+4. For GO, we can install directly from Mason (:Mason). We will use `gopls`:
+```bash
+go install golang.org/x/tools/gopls@latest
+```
