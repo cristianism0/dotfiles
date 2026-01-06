@@ -24,3 +24,6 @@ require('lazy').setup({
     require 'plugins.fugitive',
     require 'plugins.autopair'    
 })
+
+-- "catppucin or rose-pine"
+vim.cmd.colorscheme "rose-pine"
