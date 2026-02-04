@@ -16,5 +16,33 @@
     {
         "key": "ctrl+=",
         "command": "-workbench.action.zoomIn"
+    },
+    {
+      "key": "ctrl+`",
+      "command": "workbench.action.terminal.focus"
+    },
+    {
+      "key": "ctrl+escape",
+      "command": "workbench.action.focusActiveEditorGroup"
+    },
+
+    {
+      "key": "ctrl+n",
+      "command": "explorer.newFile",
+      "when": "explorerViewletFocus"
+    },
+
+    // Toggle File Tree
+    {
+      "key": "ctrl+b",
+      "command": "workbench.action.toggleSidebarVisibility"
+    },
+
+    // Zen mode
+    {
+      "key": "ctrl+k z",
+      "command": "workbench.action.toggleZenMode"
     }
 ]
+
+
