@@ -1,0 +1,22 @@
+# run mode
+mode=drun
+
+#box size
+width=30%
+height=20%
+
+#scroll
+hide-scroll=true
+
+#case sensitive
+insensitive=true
+
+#prompt message
+prompt=Search...
+
+# allow icons
+allow-images=true
+
+# terminal
+term=kitty
+

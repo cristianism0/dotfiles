@@ -77,9 +77,8 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 
 -- for insert wrinting
 vim.keymap.set("i", "<C-i>", "**<Left>", { desc = "Add markdown italics" })
-vim.keymap.set("i", "<C-b>", "```\n\n```<Up>", { desc = "Add markdown code block" })
+vim.keymap.set("i", "<C-m>", "```\n\n```<Up>", { desc = "Add markdown code block" })
 vim.keymap.set("i", "<C-BS>", "<C-w>", { desc = "Delete word back" })
 vim.keymap.set("i", "<C-<Left>", "<Esc>ea", { desc = "Go to the next word" })
-vim.keymap.set("i", "<C-<Left>", "<Esc>gea", { desc = "Go to the next word" })
-
-
+vim.keymap.set("i", "<C-<Left>", "<Esc>gea", { desc = "Go to the previous word" })
+vim.keymap.set("i", "<C-b>", "**<Left><Left>**", { desc = "Add markdown bold" })

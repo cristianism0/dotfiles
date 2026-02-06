@@ -1,8 +1,8 @@
 {
-  "workbench.colorTheme": "Min Dark",
+  "workbench.colorTheme": "Ayu Dark Bordered",
   "workbench.iconTheme": "icons",
-  "editor.fontFamily": "Fira Code Mono",
-  "editor.fontSize": 15,
+  "editor.fontFamily": "Fira Code Nerd Font",
+  "editor.fontSize": 14,
   "editor.lineHeight": 1.4,
   "editor.fontLigatures": true,
   "editor.rulers": [80, 120],
@@ -17,7 +17,7 @@
 
   // Typing and Coding
   "editor.cursorSmoothCaretAnimation": "on",
-  "editor.cursorBlinking":"solid",
+  "editor.cursorBlinking":"blink",
   "editor.stickyScroll.enabled": true,
   "editor.wordWrap": "on",
   "editor.renderLineHighlight": "all",
@@ -35,6 +35,7 @@
 
   // Terminal
   "terminal.integrated.defaultProfile.linux": "zsh",
+  "terminal.integrated.fontLigatures.enabled": true,
   "terminal.integrated.fontSize": 14,
   "terminal.integrated.cursorStyle": "line",
   "telemetry.telemetryLevel": "off",
@@ -49,5 +50,5 @@
     "plaintext": false,
     "markdown": false,
     "scminput": false
-  }
+  },
 }
