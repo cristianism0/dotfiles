@@ -65,19 +65,19 @@ layout {
     default-column-width { proportion 0.5; }
     focus-ring {
         // off
-        width 2
-        active-color "#c22935"
-        inactive-color "#505050"
+        width 3
+        active-color "#294172"
+        inactive-color "#2d2d2d"
     }
 
     border {
         // The settings are the same as for the focus ring.
-        off
+        //off
         width 4
-        active-color "#ffc87f"
-        inactive-color "#505050"
+        active-color "#2d2d2d"
+        inactive-color "#1a1a1b"
 
-        urgent-color "#9b0000"
+        urgent-color "#00ffff"
     }
     shadow {
         // on
@@ -102,10 +102,16 @@ layout {
 // Loaded on Startup 
 spawn-at-startup "waybar"
 spawn-at-startup "mako"
-spawn-sh-at-startup "swaybg -i ~/dotfiles/wallpapers/wall.png"
+spawn-sh-at-startup "swaybg -i ~/dotfiles/wallpapers/wall.jpg"
 
 //initiate wayland section
 spawn-at-startup "dbus-update-activation-environment" "--systemd" "WAYLAND_DISPLAY" "XDG_CURRENT_DESKTOP"
+
+spawn-at-startup "swayidle" "-w" \
+    "timeout" "180" "niri msg action power-off-monitors" \
+    "timeout" "600" "swaylock -f" \
+    "before-sleep" "swaylock -f"
+
 
 hotkey-overlay {
     // Uncomment this line to disable the "Important Hotkeys" pop-up at startup.

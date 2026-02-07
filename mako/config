@@ -1,0 +1,22 @@
+max-history=100
+sort=-time
+font=Fira Code Nerd Font 10
+width=350
+height=150
+margin=20
+padding=15
+border-size=2
+border-radius=12
+icons=1
+max-icon-size=64
+background-color=#0a1423f2
+text-color=#d1d1d1
+border-color=#51a2da
+progress-color=over #294172
+
+[urgency=high]
+border-color=#ff5555
+default-timeout=0
+
+[urgency=low]
+border-color=#294172
