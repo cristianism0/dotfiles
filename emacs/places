@@ -1,0 +1,8 @@
+;;; -*- coding: utf-8; mode: lisp-data -*-
+(("/home/cristian/.config/emacs/"
+  (dired-filename . "/home/cristian/.config/emacs/init.el"))
+ ("/home/cristian/.config/emacs/lisp/themes.el" . 236)
+ ("/home/cristian/.config/emacs/lisp/"
+  (dired-filename . "/home/cristian/.config/emacs/lisp/ide.el"))
+ ("/home/cristian/.config/emacs/lisp/ide.el" . 13)
+ ("/home/cristian/.config/emacs/init.el" . 153))
