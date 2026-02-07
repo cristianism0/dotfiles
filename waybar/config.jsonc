@@ -20,7 +20,7 @@
         //"memory",
         //"temperature",
         //"backlight",
-        //"sway/language",
+        //"niri/language",
         "battery",
         "clock",
         "tray"
@@ -51,10 +51,10 @@
             "unlocked": ""
         }
     },
-    "sway/mode": {
+    "niri/mode": {
         "format": "<span style=\"italic\">{}</span>"
     },
-    "sway/scratchpad": {
+    "niri/scratchpad": {
         "format": "{icon} {count}",
         "show-empty": false,
         "format-icons": ["", ""],
