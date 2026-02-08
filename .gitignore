@@ -22,6 +22,8 @@ projectile.cache
 recentf
 *-autoloads.el
 
+history
+places
 .bash_history
 .zsh_history
 .zcompdump*
