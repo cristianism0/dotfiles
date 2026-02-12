@@ -106,11 +106,12 @@ spawn-sh-at-startup "swaybg -i ~/dotfiles/wallpapers/wall.jpg"
 
 //initiate wayland section
 spawn-at-startup "dbus-update-activation-environment" "--systemd" "WAYLAND_DISPLAY" "XDG_CURRENT_DESKTOP"
-
 spawn-at-startup "swayidle" "-w" \
     "timeout" "180" "niri msg action power-off-monitors" \
-    "timeout" "600" "swaylock -f" \
-    "before-sleep" "swaylock -f"
+    "timeout" "300" "swaylock -f" \
+    "timeout" "600" "systemctl suspend" \
+    "before-sleep" "swaylock -f" \
+    "resume" "niri msg action power-on-monitors"
 
 
 hotkey-overlay {
@@ -149,7 +150,7 @@ binds {
 
     Mod+T hotkey-overlay-title="Open a Terminal: kitty" { spawn "kitty"; }
     Mod+D hotkey-overlay-title="Run an Application: wofi" { spawn "wofi"; }
-    Mod+Z hotkey-overlay-title="Run an Application: zen-browser" { spawn "flatpak" "run" "app.zen_browser.zen";}
+    Mod+B hotkey-overlay-title="Run an Application: brave-browser" { spawn "brave-browser";}
     Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
     
     Super+Alt+S allow-when-locked=true hotkey-overlay-title=null { spawn-sh "pkill orca || exec orca"; }

@@ -5,7 +5,7 @@ Dependencias para o WM:
 
 ```bash
 sudo dnf copr enable yalter/niri
-sudo dnf install niri swayidle swaylock waybar mock kitty wofi fastfetch zsh
+sudo dnf install niri swayidle swaylock waybar mock kitty wofi fastfetch zsh brightnessctl
 ```
 
 Para os editores de texto:
