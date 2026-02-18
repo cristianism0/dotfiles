@@ -1,22 +1,11 @@
-# run mode
-mode=drun
-
-#box size
-width=30%
-height=20%
-
-#scroll
-hide-scroll=true
-
-#case sensitive
-insensitive=true
-
-#prompt message
-prompt=Search...
-
-# allow icons
-allow-images=true
-
-# terminal
+show=drun
+width=750
+height=400
+always_parse_args=true
+show_all=false
 term=kitty
-
+hide_scroll=true
+print_command=true
+insensitive=true
+prompt=
+columns=2

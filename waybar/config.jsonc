@@ -13,18 +13,19 @@
         "pulseaudio",
         "network",
         "power-profiles-daemon",
-        // "cpu",
-        // "memory",
-        // "temperature",
-        // "backlight",
-        // "niri/language",
         "battery",
         "clock",
         "tray",
-        "custom/media"
+        "custom/media",
+        "custom/fedora"
     ],
 
-    // Modules configuration
+    "custom/fedora": {
+            "format": " ",
+            "on-click": "pkill wofi || wofi --show drun --define=drun-print_command=true",
+            "tooltip": false
+        },
+        
     "niri/workspaces": {
         "format": "{icon}",
         "format-icons": {

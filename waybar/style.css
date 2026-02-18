@@ -30,6 +30,20 @@ window#waybar {
     color: #ffffff;
 }
 
+#custom-fedora {
+    padding: 0 15px;
+    color: #51a2da; 
+    font-size: 18px; 
+    background-color: transparent;
+    border-right: 1px solid #294172; 
+    /*margin-right: 0px;*/
+}
+
+#custom-fedora:hover {
+    color: #ffffff;
+    background-color: rgba(81, 162, 218, 0.2); 
+}
+
 #idle_inhibitor,
 #clock,
 #battery,

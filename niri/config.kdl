@@ -102,7 +102,7 @@ layout {
 // Loaded on Startup 
 spawn-at-startup "waybar"
 spawn-at-startup "mako"
-spawn-sh-at-startup "swaybg -i ~/dotfiles/wallpapers/wall.jpg"
+spawn-sh-at-startup "swaybg -i ~/dotfiles/wallpapers/nwall.jpg"
 
 //initiate wayland section
 spawn-at-startup "dbus-update-activation-environment" "--systemd" "WAYLAND_DISPLAY" "XDG_CURRENT_DESKTOP"
@@ -116,7 +116,7 @@ spawn-at-startup "swayidle" "-w" \
 
 hotkey-overlay {
     // Uncomment this line to disable the "Important Hotkeys" pop-up at startup.
-    // skip-at-startup
+     skip-at-startup
 }
 
 // Remove app headers
