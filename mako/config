@@ -1,6 +1,5 @@
 max-history=100
 sort=-time
-output=eDP-1
 font=monospace 10
 width=350
 height=150
@@ -11,8 +10,3 @@ border-radius=12
 background-color=#1A1A1B
 text-color=#FFFFFF
 border-color=#D70A53
-progress-color=#8C1038
-
-[urgency=high]
-border-color=#D70A53
-default-timeout=0
