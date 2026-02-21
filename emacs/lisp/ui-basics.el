@@ -15,4 +15,4 @@
 (setq display-line-numbers-type 'relative) ; Make numbers relative
 
 ;;; Fonts
-(set-face-attribute 'default nil :font "Fira Code" :height 175)
+(set-face-attribute 'default nil :family "Fira Code Nerd Font" :height 175)

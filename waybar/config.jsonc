@@ -3,30 +3,30 @@
     "layer": "top",
     "position": "top",
     "height": 30,
-    "spacing": 4,
+    "spacing": 0,
 
     // Choose the order of the modules
-    "modules-left": ["niri/workspaces"],
-    "modules-center": ["niri/window"],
+    "modules-left": ["sway/workspaces"],
+    "modules-center": ["sway/media"],
     "modules-right": [
-        "idle_inhibitor",
+        //"idle_inhibitor",
+        "tray",
         "pulseaudio",
         "network",
         "power-profiles-daemon",
         "battery",
+        //"clock",
         "clock",
-        "tray",
-        "custom/media",
-        "custom/fedora"
+        "custom/menu"
     ],
 
-    "custom/fedora": {
-            "format": " ",
-            "on-click": "pkill wofi || wofi --show drun --define=drun-print_command=true",
+    "custom/menu": {
+            "format": "",
+            "on-click": "pkill wofi || wofi --show drun",
             "tooltip": false
         },
         
-    "niri/workspaces": {
+    "sway/workspaces": {
         "format": "{icon}",
         "format-icons": {
             "1": "",
@@ -48,10 +48,10 @@
             "unlocked": ""
         }
     },
-    "niri/mode": {
+    "sway/mode": {
         "format": "<span style=\"italic\">{}</span>"
     },
-    "niri/scratchpad": {
+    "sway/scratchpad": {
         "format": "{icon} {count}",
         "show-empty": false,
         "format-icons": ["", ""],
@@ -186,6 +186,7 @@
         "escape": true,
         "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null"
     },
+
     "custom/power": {
         "format": "⏻ ",
         "tooltip": false,

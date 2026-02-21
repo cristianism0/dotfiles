@@ -12,6 +12,7 @@ alias uva="uv add"
 # -- Random -- #
 alias synt="syncthing"
 alias vim="nvim"
-alias shutdown="shutdown now"
+alias shutdown="systemctl poweroff"
+alias reboot="systemctl reboot"
 
 
