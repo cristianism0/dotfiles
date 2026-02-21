@@ -7,7 +7,7 @@
   "margin-right": 20,
   "spacing": 10,
 
-  "modules-left": ["clock", "sway/workspaces"],
+  "modules-left": ["clock","custom/menu","sway/workspaces"],
 
   "modules-center": ["mpris"],
 
@@ -16,7 +16,7 @@
     "tray",
     "network",
     "battery",
-    "custom/menu",
+    "custom/kdeconnect",
     "custom/power",
   ],
 
@@ -81,6 +81,12 @@
   "custom/menu": {
     "format": "",
     "on-click": "wofi --show drun",
+  },
+  
+  "custom/kdeconnect": {
+      "format": "",
+      "on-click": "kdeconnect-app",
+      "tooltip-format": "Abrir KDE Connect",
   },
 
   "custom/power": {

@@ -51,6 +51,7 @@ exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DE
 exec waybar
 exec swaybg -i ~/dotfiles/wallpapers/wall.png
 exec mako
+exec kdeconnect-indicator
 
     # Start a terminal
     bindsym $mod+Return exec $term

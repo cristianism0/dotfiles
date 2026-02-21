@@ -40,7 +40,7 @@ window#waybar {
 
 #battery.charging,
 #battery.plugged {
-    color: #26a65b;
+    color: #ffffff;
 }
 
 #battery.warning:not(.charging) {
@@ -94,6 +94,11 @@ window#waybar {
 #custom-menu {
     color: #ffffff;
     font-size: 16px;
+}
+
+#custom-kdeconnect {
+    color: #ffffff;
+    padding: 0 10px;
 }
 
 #custom-power {
