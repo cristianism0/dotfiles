@@ -1,17 +1,34 @@
-
 ## Dependencias
-
-Dependencias para o WM:
+Para usar o sway e baixar todos os items necessários:
 
 ```bash
-sudo dnf copr enable yalter/niri
-sudo dnf install niri swayidle swaylock waybar mock kitty wofi fastfetch zsh brightnessctl
+sudo apt update && sudo apt install \
+sway swayidle swaylock waybar swaybg \
+nm-connection-editor brightnessctl playerctl pavucontrol \
+wofi mako kitty fastfetch \
+grim slurp wl-clipboard \
+pulseaudio-utils fonts-font-awesome unzip
 ```
 
 Para os editores de texto:
-
 ```bash
-sudo dnf install emacs nvim
+sudo apt install emacs nvim
+```
+É necessário ainda baixar o Fira Code Nerd Font e o Brave Browser.
+
+Brave:
+```bash
+curl -fsS https://dl.brave.com/install.sh | sh
+```
+
+Fira Code fontes:
+```bash
+mkdir -p ~/.local/share/fonts
+wget -P ~/.local/share/fonts https://github.com/ryanoasis/nerd-fonts/releases/latest/download/FiraCode.zip
+cd ~/.local/share/fonts
+unzip FiraCode.zip
+rm FiraCode.zip
+fc-cache -fv
 ```
 
 ## Setup
@@ -30,4 +47,3 @@ chmod +x ~/dotfiles/auto_symlink.sh
 ```
 
 Se tudo estiver OK, tira o dry-run.
-

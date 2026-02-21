@@ -51,8 +51,6 @@ exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DE
 exec waybar
 exec swaybg -i ~/dotfiles/wallpapers/wall.png
 exec mako
-exec nm-applet --indicator
-exec QT_QPA_PLATFORM=xcb kdeconnectd
 
     # Start a terminal
     bindsym $mod+Return exec $term
