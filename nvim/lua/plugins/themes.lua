@@ -1,4 +1,4 @@
-return { 
+return {
 {
 	"rose-pine/neovim",
 	name = "rose-pine",
@@ -14,7 +14,7 @@ return {
     end
 },
 
-{ 
+{
 "catppuccin/nvim",
 name = "catppuccin",
 lazy = false,

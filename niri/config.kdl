@@ -1,3 +1,10 @@
+// enriroment{
+//     XDG_CURRENT_DESKTOP "niri"
+//     XDG_SESSION_TIPE "wayland"
+// }
+
+prefer-no-csd
+
 input {
     keyboard {
         xkb {
@@ -52,19 +59,18 @@ layout {
         color "#0007"
     }
 }
-spawn-at-startup "ibus-daemon" "-rxrd"
-spawn-at-startup "waybar"
-spawn-at-startup "mako"
-spawn-sh-at-startup "swaybg -i ~/dotfiles/wallpapers/blue-theme/nwall.jpg"
-spawn-at-startup "kdeconnect-indicator"
 
-spawn-sh-at-startup "swayidle -w timeout 300 'swaylock -f -c 000000' timeout 600 'niri msg action power-off-monitors' resume 'niri msg action power-on-monitors' before-sleep 'swaylock -f -c 000000'"
+// for kde enviroments
+//spawn-at-startup "systemctl" "--user" "import-enviroment" "WAYLAND_DISPLAY" "XDG_CURRENT_DESKTOP"
+//spawn-at-startup "dbus-update-activation-enviroment" "--systemd" "WAYLAND_DISPLAY" "XDG_CURRENT_DESKTOP=niri"
+
+spawn-at-startup "qs" "-c" "noctalia-shell" "--no-duplicate"
+spawn-at-startup "swaybg -i ~/dotfiles/wallpapers/blue-theme/nwall.png"
 
 hotkey-overlay {
      skip-at-startup
 }
 
-prefer-no-csd
 screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 
 animations {

@@ -2,20 +2,20 @@
 Para usar o sway e baixar todos os items necessários:
 
 ```bash
-sudo apt update && sudo apt install \
-sway swayidle swaylock waybar swaybg \
+sudo dnf update && sudo dnf install \
+niri swayidle swaylock waybar swaybg \
 nm-connection-editor brightnessctl playerctl pavucontrol \
 wofi mako kitty fastfetch \
 grim slurp wl-clipboard \
-pulseaudio-utils fonts-font-awesome unzip
+pulseaudio-utils --skip-unavailable
 ```
 
 Para os editores de texto:
+
 ```bash
 sudo apt install emacs nvim
 ```
 É necessário ainda baixar o Fira Code Nerd Font e o Brave Browser.
-
 Brave:
 ```bash
 curl -fsS https://dl.brave.com/install.sh | sh
