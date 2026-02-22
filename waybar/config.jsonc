@@ -7,7 +7,7 @@
   "margin-right": 20,
   "spacing": 10,
 
-  "modules-left": ["clock","custom/menu","sway/workspaces"],
+  "modules-left": ["clock", "custom/menu", "niri/workspaces"],
 
   "modules-center": ["mpris"],
 
@@ -51,7 +51,7 @@
     "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
   },
 
-  "sway/workspaces": {
+  "niri/workspaces": {
     "disable-scroll": true,
     "all-outputs": true,
     "format": "{name}",
@@ -79,14 +79,14 @@
   },
 
   "custom/menu": {
-    "format": "",
+    "format": "",
     "on-click": "wofi --show drun",
   },
-  
+
   "custom/kdeconnect": {
-      "format": "",
-      "on-click": "kdeconnect-app",
-      "tooltip-format": "Abrir KDE Connect",
+    "format": "",
+    "on-click": "kdeconnect-app",
+    "tooltip-format": "Abrir KDE Connect",
   },
 
   "custom/power": {

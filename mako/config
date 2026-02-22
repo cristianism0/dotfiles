@@ -1,12 +1,15 @@
 max-history=100
 sort=-time
-font=monospace 10
+font=JetBrainsMono Nerd Font 10
 width=350
 height=150
 margin=20
 padding=15
 border-size=2
 border-radius=12
-background-color=#1A1A1B
-text-color=#FFFFFF
-border-color=#D70A53
+background-color=#0b162f
+text-color=#cedff5
+border-color=#3c6eb4
+
+[urgency=high]
+border-color=#6fa3e1

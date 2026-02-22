@@ -16,7 +16,7 @@ fi
 # 6. this also protect agains files and dirs that starts with -
 WORK_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &> /dev/null && pwd)
 TARGET_DIR="$HOME/.config"
-IGNORED_FILES=("aliases.zsh" ".git" ".gitignore" "README.md" "wallpapers" $(basename -- "${BASH_SOURCE[0]}"))
+IGNORED_FILES=("aliases.zsh" "sway" ".git" ".gitignore" "README.md" "wallpapers" $(basename -- "${BASH_SOURCE[0]}"))
 TO_HOME=(".zshrc")
 #fallback
 mkdir -p "$TARGET_DIR"
