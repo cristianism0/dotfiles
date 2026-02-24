@@ -25,5 +25,5 @@ require('lazy').setup({
     require 'plugins.autopair'    
 })
 
--- "catppucin or rose-pine"
-vim.cmd.colorscheme "rose-pine"
+-- "catppucin, rose-pine, tokyonight"
+vim.cmd.colorscheme "tokyonight"

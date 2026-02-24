@@ -1,0 +1,351 @@
+# vim:ft=zsh ts=2 sw=2 sts=2
+#
+# MetalicFedora Theme - based on agnoster's Theme
+# https://gist.github.com/3712874
+# A Powerline-inspired theme for ZSH with a metalic blue palette
+#
+# # README
+# This themes is a complete palette customization for Agnoster theme.
+#
+# Palette:
+#   #1c1c1c  → 234  (deep charcoal)
+#   #262626  → 235  (dark graphite)
+#   #303030  → 236  (graphite)
+#   #87afff  → 111  (steel blue)
+#   #afd7ff  → 153  (light sky blue)
+#   #5f87af  → 67   (muted steel)
+#   #005faf  → 25   (deep blue)
+#   #ffffff  → 255  (white)
+#
+# # Goals
+#
+# Two-line prompt with metalic dark/blue aesthetic.
+# Line 1: status + context + dir + vcs info
+# Line 2: the actual input prompt character
+
+### Segment drawing
+CURRENT_BG='NONE'
+
+# MetalicFedora fixed foreground (light blue over dark)
+CURRENT_FG='153'         # #afd7ff - light sky blue
+CURRENT_DEFAULT_FG='153'
+
+### Theme Color Configuration
+# Override these in your ~/.zshrc
+
+# Current working directory
+: ${METALICFEDORA_DIR_FG:='153'}     # #afd7ff
+: ${METALICFEDORA_DIR_BG:='235'}     # #262626
+
+# user@host
+: ${METALICFEDORA_CONTEXT_FG:='111'} # #87afff
+: ${METALICFEDORA_CONTEXT_BG:='234'} # #1c1c1c
+
+# Git clean
+: ${METALICFEDORA_GIT_CLEAN_FG:='234'} # #1c1c1c
+: ${METALICFEDORA_GIT_CLEAN_BG:='111'} # #87afff
+
+# Git dirty
+: ${METALICFEDORA_GIT_DIRTY_FG:='234'} # #1c1c1c
+: ${METALICFEDORA_GIT_DIRTY_BG:='67'}  # #5f87af (muted steel)
+
+# Bazaar
+: ${METALICFEDORA_BZR_CLEAN_FG:='234'}
+: ${METALICFEDORA_BZR_CLEAN_BG:='111'}
+: ${METALICFEDORA_BZR_DIRTY_FG:='234'}
+: ${METALICFEDORA_BZR_DIRTY_BG:='67'}
+
+# Mercurial
+: ${METALICFEDORA_HG_NEWFILE_FG:='153'}
+: ${METALICFEDORA_HG_NEWFILE_BG:='25'}  # #005faf deep blue
+: ${METALICFEDORA_HG_CHANGED_FG:='234'}
+: ${METALICFEDORA_HG_CHANGED_BG:='67'}
+: ${METALICFEDORA_HG_CLEAN_FG:='234'}
+: ${METALICFEDORA_HG_CLEAN_BG:='111'}
+
+# VirtualEnv
+: ${METALICFEDORA_VENV_FG:='234'}
+: ${METALICFEDORA_VENV_BG:='111'}
+
+# AWS Profile
+: ${METALICFEDORA_AWS_PROD_FG:='153'}
+: ${METALICFEDORA_AWS_PROD_BG:='25'}   # deep blue for prod
+: ${METALICFEDORA_AWS_FG:='234'}
+: ${METALICFEDORA_AWS_BG:='67'}        # muted steel for non-prod
+
+# Status symbols
+: ${METALICFEDORA_STATUS_RETVAL_FG:='111'}
+: ${METALICFEDORA_STATUS_ROOT_FG:='153'}
+: ${METALICFEDORA_STATUS_JOB_FG:='67'}
+: ${METALICFEDORA_STATUS_FG:='153'}    # #afd7ff
+: ${METALICFEDORA_STATUS_BG:='234'}    # #1c1c1c
+
+## Non-Color settings
+: ${METALICFEDORA_STATUS_RETVAL_NUMERIC:=false}
+: ${METALICFEDORA_GIT_INLINE:=false}
+: ${METALICFEDORA_GIT_BRANCH_STATUS:=true}
+
+# Powerline separator character
+() {
+  local LC_ALL="" LC_CTYPE="en_US.UTF-8"
+  SEGMENT_SEPARATOR=$'\ue0b0'
+}
+
+# Begin a segment
+# Takes two arguments, background and foreground. Both can be omitted,
+# rendering default background/foreground.
+prompt_segment() {
+  local bg fg
+  [[ -n $1 ]] && bg="%K{$1}" || bg="%k"
+  [[ -n $2 ]] && fg="%F{$2}" || fg="%f"
+  if [[ $CURRENT_BG != 'NONE' && $1 != $CURRENT_BG ]]; then
+    echo -n " %{$bg%F{$CURRENT_BG}%}$SEGMENT_SEPARATOR%{$fg%} "
+  else
+    echo -n "%{$bg%}%{$fg%} "
+  fi
+  CURRENT_BG=$1
+  [[ -n $3 ]] && echo -n $3
+}
+
+# End the first line of the prompt
+prompt_end_line1() {
+  if [[ -n $CURRENT_BG ]]; then
+    echo -n " %{%k%F{$CURRENT_BG}%}$SEGMENT_SEPARATOR"
+  else
+    echo -n "%{%k%}"
+  fi
+  echo -n "%{%f%}"
+  CURRENT_BG=''
+}
+
+# End the prompt, closing any open segments
+prompt_end() {
+  if [[ -n $CURRENT_BG ]]; then
+    echo -n " %{%k%F{$CURRENT_BG}%}$SEGMENT_SEPARATOR"
+  else
+    echo -n "%{%k%}"
+  fi
+  echo -n "%{%f%}"
+  CURRENT_BG=''
+}
+
+git_toplevel() {
+  local repo_root=$(git rev-parse --show-toplevel)
+  if [[ $repo_root = '' ]]; then
+    repo_root=$(git rev-parse --git-dir)
+    if [[ $repo_root = '.' ]]; then
+      repo_root=$PWD
+    fi
+  fi
+  echo -n $repo_root
+}
+
+### Prompt components
+
+# Context: user@hostname
+prompt_context() {
+  if [[ "$USERNAME" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
+    prompt_segment "$METALICFEDORA_CONTEXT_BG" "$METALICFEDORA_CONTEXT_FG" "%(!.%{%F{$METALICFEDORA_STATUS_ROOT_FG}%}.)%n@%m"
+  fi
+}
+
+prompt_git_relative() {
+  local repo_root=$(git_toplevel)
+  local path_in_repo=$(pwd | sed "s/^$(echo "$repo_root" | sed 's:/:\\/:g;s/\$/\\$/g')//;s:^/::;s:/$::;")
+  if [[ $path_in_repo != '' ]]; then
+    prompt_segment "$METALICFEDORA_DIR_BG" "$METALICFEDORA_DIR_FG" "$path_in_repo"
+  fi
+}
+
+# Git: branch/detached head, dirty status
+prompt_git() {
+  (( $+commands[git] )) || return
+  if [[ "$(command git config --get oh-my-zsh.hide-status 2>/dev/null)" = 1 ]]; then
+    return
+  fi
+  local PL_BRANCH_CHAR
+  () {
+    local LC_ALL="" LC_CTYPE="en_US.UTF-8"
+    PL_BRANCH_CHAR=$'\ue0a0'         # 
+  }
+  local ref dirty mode repo_path
+
+  if [[ "$(command git rev-parse --is-inside-work-tree 2>/dev/null)" = "true" ]]; then
+    repo_path=$(command git rev-parse --git-dir 2>/dev/null)
+    dirty=$(parse_git_dirty)
+    ref=$(command git symbolic-ref HEAD 2> /dev/null) || \
+    ref="◈ $(command git describe --exact-match --tags HEAD 2> /dev/null)" || \
+    ref="➦ $(command git rev-parse --short HEAD 2> /dev/null)"
+    if [[ -n $dirty ]]; then
+      prompt_segment "$METALICFEDORA_GIT_DIRTY_BG" "$METALICFEDORA_GIT_DIRTY_FG"
+    else
+      prompt_segment "$METALICFEDORA_GIT_CLEAN_BG" "$METALICFEDORA_GIT_CLEAN_FG"
+    fi
+
+    if [[ $METALICFEDORA_GIT_BRANCH_STATUS == 'true' ]]; then
+      local ahead behind
+      ahead=$(command git log --oneline @{upstream}.. 2>/dev/null)
+      behind=$(command git log --oneline ..@{upstream} 2>/dev/null)
+      if [[ -n "$ahead" ]] && [[ -n "$behind" ]]; then
+        PL_BRANCH_CHAR=$'\u21c5'
+      elif [[ -n "$ahead" ]]; then
+        PL_BRANCH_CHAR=$'\u21b1'
+      elif [[ -n "$behind" ]]; then
+        PL_BRANCH_CHAR=$'\u21b0'
+      fi
+    fi
+
+    if [[ -e "${repo_path}/BISECT_LOG" ]]; then
+      mode=" <B>"
+    elif [[ -e "${repo_path}/MERGE_HEAD" ]]; then
+      mode=" >M<"
+    elif [[ -e "${repo_path}/rebase" || -e "${repo_path}/rebase-apply" || -e "${repo_path}/rebase-merge" || -e "${repo_path}/../.dotest" ]]; then
+      mode=" >R>"
+    fi
+
+    setopt promptsubst
+    autoload -Uz vcs_info
+
+    zstyle ':vcs_info:*' enable git
+    zstyle ':vcs_info:*' get-revision true
+    zstyle ':vcs_info:*' check-for-changes true
+    zstyle ':vcs_info:*' stagedstr '✚'
+    zstyle ':vcs_info:*' unstagedstr '±'
+    zstyle ':vcs_info:*' formats ' %u%c'
+    zstyle ':vcs_info:*' actionformats ' %u%c'
+    vcs_info
+    echo -n "${${ref:gs/%/%%}/refs\/heads\//$PL_BRANCH_CHAR }${vcs_info_msg_0_%% }${mode}"
+    [[ $METALICFEDORA_GIT_INLINE == 'true' ]] && prompt_git_relative
+  fi
+}
+
+prompt_bzr() {
+  (( $+commands[bzr] )) || return
+  local dir="$PWD"
+  while [[ ! -d "$dir/.bzr" ]]; do
+    [[ "$dir" = "/" ]] && return
+    dir="${dir:h}"
+  done
+
+  local bzr_status status_mod status_all revision
+  if bzr_status=$(command bzr status 2>&1); then
+    status_mod=$(echo -n "$bzr_status" | head -n1 | grep "modified" | wc -m)
+    status_all=$(echo -n "$bzr_status" | head -n1 | wc -m)
+    revision=${$(command bzr log -r-1 --log-format line | cut -d: -f1):gs/%/%%}
+    if [[ $status_mod -gt 0 ]] ; then
+      prompt_segment "$METALICFEDORA_BZR_DIRTY_BG" "$METALICFEDORA_BZR_DIRTY_FG" "bzr@$revision ✚"
+    else
+      if [[ $status_all -gt 0 ]] ; then
+        prompt_segment "$METALICFEDORA_BZR_DIRTY_BG" "$METALICFEDORA_BZR_DIRTY_FG" "bzr@$revision"
+      else
+        prompt_segment "$METALICFEDORA_BZR_CLEAN_BG" "$METALICFEDORA_BZR_CLEAN_FG" "bzr@$revision"
+      fi
+    fi
+  fi
+}
+
+prompt_hg() {
+  (( $+commands[hg] )) || return
+  local rev st branch
+  if $(command hg id >/dev/null 2>&1); then
+    if $(command hg prompt >/dev/null 2>&1); then
+      if [[ $(command hg prompt "{status|unknown}") = "?" ]]; then
+        prompt_segment "$METALICFEDORA_HG_NEWFILE_BG" "$METALICFEDORA_HG_NEWFILE_FG"
+        st='±'
+      elif [[ -n $(command hg prompt "{status|modified}") ]]; then
+        prompt_segment "$METALICFEDORA_HG_CHANGED_BG" "$METALICFEDORA_HG_CHANGED_FG"
+        st='±'
+      else
+        prompt_segment "$METALICFEDORA_HG_CLEAN_BG" "$METALICFEDORA_HG_CLEAN_FG"
+      fi
+      echo -n ${$(command hg prompt "☿ {rev}@{branch}"):gs/%/%%} $st
+    else
+      st=""
+      rev=$(command hg id -n 2>/dev/null | sed 's/[^-0-9]//g')
+      branch=$(command hg id -b 2>/dev/null)
+      if command hg st | command grep -q "^\?"; then
+        prompt_segment "$METALICFEDORA_HG_NEWFILE_BG" "$METALICFEDORA_HG_NEWFILE_FG"
+        st='±'
+      elif command hg st | command grep -q "^[MA]"; then
+        prompt_segment "$METALICFEDORA_HG_CHANGED_BG" "$METALICFEDORA_HG_CHANGED_FG"
+        st='±'
+      else
+        prompt_segment "$METALICFEDORA_HG_CLEAN_BG" "$METALICFEDORA_HG_CLEAN_FG"
+      fi
+      echo -n "☿ ${rev:gs/%/%%}@${branch:gs/%/%%}" $st
+    fi
+  fi
+}
+
+# Dir: current working directory
+prompt_dir() {
+  if [[ $METALICFEDORA_GIT_INLINE == 'true' ]] && $(git rev-parse --is-inside-work-tree >/dev/null 2>&1); then
+    prompt_segment "$METALICFEDORA_DIR_BG" "$METALICFEDORA_DIR_FG" "$(git_toplevel | sed "s:^$HOME:~:")"
+  else
+    prompt_segment "$METALICFEDORA_DIR_BG" "$METALICFEDORA_DIR_FG" '%~'
+  fi
+}
+
+# Virtualenv: current working virtualenv
+prompt_virtualenv() {
+  if [ -n "$CONDA_DEFAULT_ENV" ]; then
+    prompt_segment '25' "$METALICFEDORA_VENV_FG" "🐍 $CONDA_DEFAULT_ENV"
+  fi
+  if [[ -n "$VIRTUAL_ENV" && -n "$VIRTUAL_ENV_DISABLE_PROMPT" ]]; then
+    prompt_segment "$METALICFEDORA_VENV_BG" "$METALICFEDORA_VENV_FG" "(${VIRTUAL_ENV:t:gs/%/%%})"
+  fi
+}
+
+# Status: error / root / background jobs
+prompt_status() {
+  local -a symbols
+
+  if [[ $METALICFEDORA_STATUS_RETVAL_NUMERIC == 'true' ]]; then
+    [[ $RETVAL -ne 0 ]] && symbols+="%{%F{$METALICFEDORA_STATUS_RETVAL_FG}%}$RETVAL"
+  else
+    [[ $RETVAL -ne 0 ]] && symbols+="%{%F{$METALICFEDORA_STATUS_RETVAL_FG}%}✘"
+  fi
+  [[ $UID -eq 0 ]] && symbols+="%{%F{$METALICFEDORA_STATUS_ROOT_FG}%}⚡"
+  [[ $(jobs -l | wc -l) -gt 0 ]] && symbols+="%{%F{$METALICFEDORA_STATUS_JOB_FG}%}⚙"
+
+  [[ -n "$symbols" ]] && prompt_segment "$METALICFEDORA_STATUS_BG" "$METALICFEDORA_STATUS_FG" "$symbols"
+}
+
+# AWS Profile
+prompt_aws() {
+  [[ -z "$AWS_PROFILE" || "$SHOW_AWS_PROMPT" = false ]] && return
+  case "$AWS_PROFILE" in
+    *-prod|*production*) prompt_segment "$METALICFEDORA_AWS_PROD_BG" "$METALICFEDORA_AWS_PROD_FG" "AWS: ${AWS_PROFILE:gs/%/%%}" ;;
+    *) prompt_segment "$METALICFEDORA_AWS_BG" "$METALICFEDORA_AWS_FG" "AWS: ${AWS_PROFILE:gs/%/%%}" ;;
+  esac
+}
+
+prompt_terraform() {
+  local terraform_info=$(tf_prompt_info)
+  [[ -z "$terraform_info" ]] && return
+  prompt_segment '25' '153' "TF: $terraform_info"
+}
+
+# ─────────────────────────────────────────────────────────────
+# Two-line prompt build
+# Line 1: ╭─ [status][context][dir][git/vcs...]
+# Line 2: ╰─ ❯
+# ─────────────────────────────────────────────────────────────
+build_prompt() {
+  RETVAL=$?
+  # Line 1 — info segments
+  prompt_status
+  prompt_virtualenv
+  prompt_aws
+  prompt_terraform
+  prompt_context
+  prompt_dir
+  prompt_git
+  prompt_bzr
+  prompt_hg
+  prompt_end_line1
+  # Newline + second line input indicator
+  echo -n "\n%{%F{111}%}❯%{%f%}"
+}
+
+PROMPT='%{%f%b%k%}$(build_prompt) '

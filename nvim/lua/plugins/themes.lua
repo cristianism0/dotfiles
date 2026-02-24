@@ -1,5 +1,23 @@
-return {
+return { 
 {
+  "folke/tokyonight.nvim",
+  config = function()
+        require('tokyonight').setup({
+                -- transparent_background
+                transparent = true,
+                styles = {
+                    sidebars = "transparent",
+                    floats = "transparent",
+                }
+            })
+
+            vim.cmd("colorscheme tokyonight")
+            vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+	        vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+    end
+},
+
+    {
 	"rose-pine/neovim",
 	name = "rose-pine",
 	config = function()
@@ -14,89 +32,89 @@ return {
     end
 },
 
-{
-"catppuccin/nvim",
-name = "catppuccin",
-lazy = false,
-priority = 1000,
+{ 
+    "catppuccin/nvim",
+    name = "catppuccin",
+    lazy = false,
+    priority = 1000,
 
-config = function()
+    config = function()
 
-    require("catppuccin").setup({
-        flavour = "mocha", -- latte, frappe, macchiato, mocha
-        background = { -- :h background
-            light = "latte",
-            dark = "mocha",
-        },
-        transparent_background = false, -- disables setting the background color.
-        float = {
-            transparent = false, -- enable transparent floating windows
-            solid = false, -- use solid styling for floating windows, see |winborder|
-        },
-        show_end_of_buffer = false, -- shows the '~' characters after the end of buffers
-        term_colors = false, -- sets terminal colors (e.g. `g:terminal_color_0`)
-        dim_inactive = {
-            enabled = false, -- dims the background color of inactive window
-            shade = "dark",
-            percentage = 0.15, -- percentage of the shade to apply to the inactive window
-        },
-        no_italic = false, -- Force no italic
-        no_bold = false, -- Force no bold
-        no_underline = false, -- Force no underline
-        styles = { -- Handles the styles of general hi groups (see `:h highlight-args`):
-            comments = { "italic" }, -- Change the style of comments
-            conditionals = { "italic" },
-            loops = {},
-            functions = {},
-            keywords = {},
-            strings = {},
-            variables = {},
-            numbers = {},
-            booleans = {},
-            properties = {},
-            types = {},
-            operators = {},
-        },
-        lsp_styles = { -- Handles the style of specific lsp hl groups (see `:h lsp-highlight`).
-            virtual_text = {
-                errors = { "italic" },
-                hints = { "italic" },
-                warnings = { "italic" },
-                information = { "italic" },
-                ok = { "italic" },
+        require("catppuccin").setup({
+            flavour = "mocha", -- latte, frappe, macchiato, mocha
+            background = { -- :h background
+                light = "latte",
+                dark = "mocha",
             },
-            underlines = {
-                errors = { "underline" },
-                hints = { "underline" },
-                warnings = { "underline" },
-                information = { "underline" },
-                ok = { "underline" },
+            transparent_background = false, -- disables setting the background color.
+            float = {
+                transparent = false, -- enable transparent floating windows
+                solid = false, -- use solid styling for floating windows, see |winborder|
             },
-            inlay_hints = {
-                background = true,
+            show_end_of_buffer = false, -- shows the '~' characters after the end of buffers
+            term_colors = false, -- sets terminal colors (e.g. `g:terminal_color_0`)
+            dim_inactive = {
+                enabled = false, -- dims the background color of inactive window
+                shade = "dark",
+                percentage = 0.15, -- percentage of the shade to apply to the inactive window
             },
-        },
-        color_overrides = {},
-        custom_highlights = {},
-        default_integrations = true,
-        auto_integrations = false,
-        integrations = {
-            cmp = true,
-            gitsigns = true,
-            nvimtree = true,
-            notify = false,
-            mini = {
-                enabled = true,
-                indentscope_color = "",
+            no_italic = false, -- Force no italic
+            no_bold = false, -- Force no bold
+            no_underline = false, -- Force no underline
+            styles = { -- Handles the styles of general hi groups (see `:h highlight-args`):
+                comments = { "italic" }, -- Change the style of comments
+                conditionals = { "italic" },
+                loops = {},
+                functions = {},
+                keywords = {},
+                strings = {},
+                variables = {},
+                numbers = {},
+                booleans = {},
+                properties = {},
+                types = {},
+                operators = {},
             },
-            -- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
-        },
-    })
+            lsp_styles = { -- Handles the style of specific lsp hl groups (see `:h lsp-highlight`).
+                virtual_text = {
+                    errors = { "italic" },
+                    hints = { "italic" },
+                    warnings = { "italic" },
+                    information = { "italic" },
+                    ok = { "italic" },
+                },
+                underlines = {
+                    errors = { "underline" },
+                    hints = { "underline" },
+                    warnings = { "underline" },
+                    information = { "underline" },
+                    ok = { "underline" },
+                },
+                inlay_hints = {
+                    background = true,
+                },
+            },
+            color_overrides = {},
+            custom_highlights = {},
+            default_integrations = true,
+            auto_integrations = false,
+            integrations = {
+                cmp = true,
+                gitsigns = true,
+                nvimtree = true,
+                notify = false,
+                mini = {
+                    enabled = true,
+                    indentscope_color = "",
+                },
+                -- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
+            },
+        })
 
-    -- setup must be called before loading
-    vim.cmd.colorscheme "catppuccin"
-end
+        -- setup must be called before loading
+        vim.cmd.colorscheme "catppuccin"
+    end
 
-  }
+}
 }
 

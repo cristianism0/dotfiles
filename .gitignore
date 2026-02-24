@@ -40,6 +40,3 @@ places
 .npm/
 .yarn/
 
-Code/*
-!Code/User/settings.json
-!Code/User/keybindings.json
