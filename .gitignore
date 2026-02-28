@@ -40,3 +40,4 @@ places
 .npm/
 .yarn/
 
+cava/shaders/*
