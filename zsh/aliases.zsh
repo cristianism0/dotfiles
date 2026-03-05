@@ -6,12 +6,7 @@ alias g-s="git status"
 alias g-ca="commit --append --no-edit"
 
 # -- Venv Aliases -- #
-venv() {
-    if [[! -d ".venv" ]]; then 
-        uv venv .venv
-    fi
-    source .venv/bin/activate
-}
+alias act="source .venv/bin/activate"
 alias uva="uv add"
 
 # -- Random -- #

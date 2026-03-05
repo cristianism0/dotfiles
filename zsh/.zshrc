@@ -11,7 +11,7 @@ source "$ZDOTDIR/themes/metalicblue.zsh-theme"
 
 # -- Opts -- #
 setopt append_history inc_append_history share_history
-setopt auto_menu menu_complete
+setopt auto_menu list_ambiguous
 setopt autocd                                           # type dir to autocd
 setopt auto_param_slash                                 # disable glob dir patterns
 setopt no_case_glob no_case_match                       # disable case sensitive
@@ -20,6 +20,8 @@ setopt extended_glob
 setopt interactive_comments                             # allow comments in shell
 unsetopt prompt_sp
 
+zstyle ':completion:*' menu select                      # tab navigation on completion
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 # -- Bindings -- #
 bindkey -e
 bindkey "^[[1;5C" forward-word                          # Ctrl + <Right> go to next word
