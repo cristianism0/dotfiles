@@ -7,8 +7,8 @@ set $down j
 set $up k
 set $right l
 
-set $term kitty
-set $menu wofi --show drun
+set $term alacritt
+set $menu fuzzel
 set $browser brave-browser
 
 include /etc/sway/config-vars.d/*
@@ -47,9 +47,9 @@ input "type:touchpad" {
     events disabled_on_external_mouse
 }
 
-exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway DISPLAY
 exec waybar
-exec swaybg -i ~/dotfiles/wallpapers/wall.png
+exec swaybg -i ~/dotfiles/wallpapers/blue-theme/nwall.jpg
 exec mako
 exec kdeconnect-indicator
 

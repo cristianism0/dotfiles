@@ -21,6 +21,15 @@ IGNORED_FILES=(
     ".gitignore"
     "README.md"
     "wallpapers"
+    "sway"
+    "waybar"
+    "wofi"
+    "cava"
+    "zsh"
+    "mako"
+    "swaylock"
+    ".zshenv"
+    "scripts"
     $(basename -- "${BASH_SOURCE[0]}")
 )
 

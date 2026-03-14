@@ -1,6 +1,12 @@
-// enriroment{
-//     XDG_CURRENT_DESKTOP "niri"
-//     XDG_SESSION_TIPE "wayland"
+// environment {
+//      XDG_CURRENT_DESKTOP "niri"
+//      XDG_SESSION_TYPE "wayland"
+//      QT_QPA_PLATFORMTHEME "wayland"
+//      QT_IM_MODULE "wayland"
+//      GTK_IM_MODULE "ibus"
+//      XMODIFIERS "@im=ibus"
+//      TERMINAL "alacritty"
+//      XCURSOR_THEME "Adwaita"
 // }
 
 prefer-no-csd
@@ -61,11 +67,14 @@ layout {
 }
 
 // for kde enviroments
-//spawn-at-startup "systemctl" "--user" "import-enviroment" "WAYLAND_DISPLAY" "XDG_CURRENT_DESKTOP"
-//spawn-at-startup "dbus-update-activation-enviroment" "--systemd" "WAYLAND_DISPLAY" "XDG_CURRENT_DESKTOP=niri"
+// spawn-at-startup "dbus-update-activation-environment" "--systemd" "WAYLAND_DISPLAY" "XDG_CURRENT_DESKTOP" "XDG_SESSION_TYPE"
+// spawn-at-startup "systemctl" "--user" "import-environment" "WAYLAND_DISPLAY" "XDG_CURRENT_DESKTOP" "XDG_SESSION_TYPE"
+// spawn-at-startup "ibus-daemon" "-rxrd"
 
-spawn-at-startup "swaybg -i ~/dotfiles/wallpapers/blue-theme/nwall.png"
-spawn-at-startup "qs" "-c" "noctalia-shell" "--no-duplicate"
+spawn-at-startup "swaybg" "-i" "$HOME/dotfiles/wallpapers/blue-theme/nwall.jpg"
+spawn-at-startup "waybar"
+spawn-at-startup "mako"
+spawn-at-startup "swayidle" "-w" "timeout" "300" "niri msg action power-off-monitors" "resume" "niri msg action power-on-monitors"
 
 hotkey-overlay {
      skip-at-startup
@@ -82,12 +91,13 @@ window-rule {
     clip-to-geometry true
 }
 
+
 binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
-    Mod+T { spawn "kitty"; }
-    Mod+D { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "launcher" "toggle"; }
+    Mod+T { spawn "alacritty"; }
+    Mod+D { spawn "fuzzel"; }
     Mod+B { spawn "brave-browser"; }
-    Mod+Alt+L { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "sessionMenu" "lockAndSuspend"; }
+    // Mod+Alt+L { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "sessionMenu" "lockAndSuspend"; }
     
     
     //Audio and Brightness volume -> playerctl and brightnessctl
