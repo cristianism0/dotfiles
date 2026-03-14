@@ -13,7 +13,7 @@ pulseaudio-utils --skip-unavailable
 Para os editores de texto:
 
 ```bash
-sudo apt install emacs nvim
+sudo dnf install emacs nvim
 ```
 É necessário ainda baixar o Fira Code Nerd Font e o Brave Browser.
 Brave:
