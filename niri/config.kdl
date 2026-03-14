@@ -71,9 +71,9 @@ layout {
 // spawn-at-startup "systemctl" "--user" "import-environment" "WAYLAND_DISPLAY" "XDG_CURRENT_DESKTOP" "XDG_SESSION_TYPE"
 // spawn-at-startup "ibus-daemon" "-rxrd"
 
-spawn-at-startup "swaybg" "-i" "$HOME/dotfiles/wallpapers/blue-theme/nwall.jpg"
 spawn-at-startup "waybar"
-spawn-at-startup "mako"
+spawn-at-startup "swaync"
+spawn-at-startup "swaybg" "-i" "/home/cristian/dotfiles/wallpapers/blue-theme/nwall.jpg"
 spawn-at-startup "swayidle" "-w" "timeout" "300" "niri msg action power-off-monitors" "resume" "niri msg action power-on-monitors"
 
 hotkey-overlay {

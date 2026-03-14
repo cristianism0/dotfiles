@@ -3,20 +3,22 @@
   "position": "top",
   "height": 36,
   "margin-top": 10,
+  "margin-bottom": 10,
   "margin-left": 20,
   "margin-right": 20,
   "spacing": 10,
 
-  "modules-left": ["clock", "custom/menu", "niri/workspaces"],
+  "modules-left": ["custom/menu", "custom/weather", "clock", "niri/workspaces"],
 
   "modules-center": ["mpris"],
 
   "modules-right": [
+    "custom/sysinfo",
     "pulseaudio#audio",
     "tray",
     "network",
     "battery",
-    "custom/kdeconnect",
+    "custom/notification",
     "custom/power",
   ],
 
@@ -26,7 +28,7 @@
   },
 
   "network": {
-    "format-wifi": "  {essid}",
+    "format-wifi": "", //{essid}",
     "format-ethernet": "󰈀  {ipaddr}",
     "format-linked": "{ifname} (No IP)",
     "format-disconnected": "󰖪  Disconnected",
@@ -60,15 +62,18 @@
   "mpris": {
     "format": "{status_icon}  {artist} - {title}",
     "format-paused": "{status_icon}  <i>{artist} - {title}</i>",
+    "format-stopped": "󰎆",
+    "ignored-players": ["firefox", "chromium"],
     "max-length": 50,
     "player-icons": {
       "default": "󰎆",
-      "spotify": "",
+      "spotify": "",
       "vlc": "󰕼",
     },
     "status-icons": {
       "playing": "󰐊",
       "paused": "󰏤",
+      "stopped": "󰎆",
     },
   },
 
@@ -78,9 +83,11 @@
     "on-click": "pavucontrol",
   },
 
+  // -- Customs -- //
+
   "custom/menu": {
     "format": "",
-    "on-click": "wofi --show drun",
+    "on-click": "fuzzel",
   },
 
   "custom/kdeconnect": {
@@ -92,5 +99,40 @@
   "custom/power": {
     "format": "",
     "on-click": "wlogout",
+  },
+
+  "custom/weather": {
+    "exec": "$HOME/.config/waybar/scripts/weather.sh",
+    "interval": 900,
+    "format": "{}",
+    "tooltip": false,
+  },
+
+  "custom/sysinfo": {
+    "exec": "$HOME/.config/waybar/scripts/sysinfo.sh",
+    "interval": 3,
+    "format": "{}",
+    "tooltip": false,
+    "on-click": "alacritty --title btop btop",
+  },
+
+  "custom/notification": {
+    "tooltip": false,
+    "format": "{icon}",
+    "format-icons": {
+      "notification": "󰂚",
+      "none": "󰂜",
+      "dnd-notification": "󰂛",
+      "dnd-none": "󰂛",
+      "inhibited-notification": "󰂚",
+      "inhibited-none": "󰂜",
+      "dnd-inhibited-notification": "󰂛",
+      "dnd-inhibited-none": "󰂛",
+    },
+    "return-type": "json",
+    "exec": "swaync-client -swb",
+    "on-click": "swaync-client -t -sw",
+    "on-click-right": "swaync-client -d -sw",
+    "escape": true,
   },
 }

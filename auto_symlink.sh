@@ -21,19 +21,14 @@ IGNORED_FILES=(
     ".gitignore"
     "README.md"
     "wallpapers"
-    "sway"
-    "waybar"
-    "wofi"
     "cava"
     "zsh"
-    "mako"
-    "swaylock"
     ".zshenv"
-    "scripts"
     $(basename -- "${BASH_SOURCE[0]}")
 )
 
 TO_HOME=(".zshenv")
+
 #fallback
 mkdir -p "$TARGET_DIR"
 # colors
