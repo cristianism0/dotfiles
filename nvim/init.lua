@@ -22,7 +22,8 @@ require('lazy').setup({
     require 'plugins.telescope',
     require 'plugins.lsp',
     require 'plugins.fugitive',
-    require 'plugins.autopair'    
+    require 'plugins.autopair',
+    require 'plugins.colorizer',
 })
 
 -- "catppucin, rose-pine, tokyonight"

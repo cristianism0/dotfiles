@@ -3,11 +3,10 @@ Para usar o sway e baixar todos os items necessários:
 
 ```bash
 sudo dnf update && sudo dnf install \
-niri swayidle swaylock waybar swaybg \
-nm-connection-editor brightnessctl playerctl pavucontrol \
-wofi mako kitty fastfetch \
-grim slurp wl-clipboard \
-pulseaudio-utils --skip-unavailable
+niri swayidle swaylock waybar swaybg swaync \
+brightnessctl playerctl pavucontrol \
+fuzzel alacritty fastfetch \
+grim slurp wl-clipboard wireplumber btop --skip-unavailable
 ```
 
 Para os editores de texto:
@@ -43,7 +42,7 @@ Usa primeiro o `--dry-run` antes de fazer a modificação.
 
 ```bash
 chmod +x ~/dotfiles/auto_symlink.sh
-./dotfiles/auto_symlink.sh --dry-run
+. $HOME/dotfiles/auto_symlink.sh --dry-run
 ```
 
 Se tudo estiver OK, tira o dry-run.

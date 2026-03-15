@@ -14,19 +14,40 @@
 
   "modules-right": [
     "custom/sysinfo",
-    "pulseaudio#audio",
+    "pulseaudio#microphone",
+    "pulseaudio",
+    "bluetooth",
     "tray",
     "network",
     "battery",
     "custom/notification",
+    "power-profiles-daemon",
     "custom/power",
   ],
 
+
+// -- Power Profiles Daemon -- //
+  "power-profiles-daemon": {
+  "format": "{icon}",
+  "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+  "tooltip": true,
+  "format-icons": {
+    "default": "",
+    "performance": "",
+    "balanced": "",
+    "power-saver": ""
+  }
+},
+
+// -- Clock -- //
   "clock": {
     "format": "{:%H:%M}",
+    "format-alt": "{:%d/%m/%Y - %H:%M}",
     "tooltip-format": "<tt>{calendar}</tt>",
   },
 
+
+// -- Network -- //
   "network": {
     "format-wifi": "", //{essid}",
     "format-ethernet": "󰈀  {ipaddr}",
@@ -36,12 +57,17 @@
     "on-click": "nm-connection-editor",
   },
 
+
+// -- Tray -- //
   "tray": {
     "icon-size": 18,
     "spacing": 10,
     "show-passive-items": true,
+    "expand": false, 
   },
 
+
+// -- Battery -- //
   "battery": {
     "states": {
       "warning": 30,
@@ -53,12 +79,29 @@
     "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
   },
 
+
+// -- Bluetooth -- //
+  "bluetooth": {
+    "format": "", //{status}",
+    "format-off": "󰂲",
+    "format-connected": " {device_alias}",
+    "tooltip-format": "{controller_alias}\t{controller_address}",
+    "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
+    "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+    "on-click": "bluetoothctl show | grep -q 'Powered: yes' && bluetoothctl power off || bluetoothctl power on",
+    "on-click-right": "bluetoothctl power off"
+},
+
+
+// -- Niri - Workspaces -- //
   "niri/workspaces": {
     "disable-scroll": true,
     "all-outputs": true,
-    "format": "{name}",
+    "format": "{icon}",
   },
 
+
+// -- MPris -- //
   "mpris": {
     "format": "{status_icon}  {artist} - {title}",
     "format-paused": "{status_icon}  <i>{artist} - {title}</i>",
@@ -67,7 +110,7 @@
     "max-length": 50,
     "player-icons": {
       "default": "󰎆",
-      "spotify": "",
+      "spotify": "",
       "vlc": "󰕼",
     },
     "status-icons": {
@@ -77,14 +120,29 @@
     },
   },
 
-  "pulseaudio#audio": {
-    "format": "󰋋 {volume}%",
+// -- Pulseaudio -- //
+"pulseaudio": {
+    "format": "{icon} {volume}%",
     "format-muted": "󰟎",
-    "on-click": "pavucontrol",
-  },
+    "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+    "on-click-right": "pavucontrol",
+    "format-icons": {
+        "default": ["", "", ""]
+    }
+},
 
-  // -- Customs -- //
+"pulseaudio#microphone": {
+    "format": "{format_source}",
+    "format-source": " {volume}%",
+    "format-source-muted": "",
+    "on-click": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle",
+    "on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 5%+",
+    "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 5%-",
+    "on-click-right": "pavucontrol -t 4" 
+},
 
+
+// -- Customs -- //
   "custom/menu": {
     "format": "",
     "on-click": "fuzzel",
@@ -113,7 +171,7 @@
     "interval": 3,
     "format": "{}",
     "tooltip": false,
-    "on-click": "alacritty --title btop btop",
+    "on-click": "alacritty --title btop -e btop",
   },
 
   "custom/notification": {

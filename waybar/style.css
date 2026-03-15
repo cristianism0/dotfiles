@@ -30,6 +30,8 @@ window#waybar > box {
 #tray,
 #mpris,
 #pulseaudio,
+#power-profiles-daemon,
+#bluetooth,
 #custom-menu,
 #custom-kdeconnect,
 #custom-power {
@@ -37,11 +39,15 @@ window#waybar > box {
     padding: 0 6px;
 }
 
+
+/* -- Clock -- */
 #clock {
     color: #ffffff;
     padding: 0 10px;
 }
 
+
+/* -- Battery -- */
 #battery {
     color: #ffffff;
 }
@@ -66,6 +72,18 @@ window#waybar > box {
     }
 }
 
+
+/* -- bluetooth -- */
+#bluetooth.on {
+    color: #51a2da;
+}
+
+#bluetooth.off {
+    color: #555555;
+}
+
+
+/* -- Network -- */
 #network {
     color: #ffffff;
     padding: 0 6px;
@@ -75,6 +93,8 @@ window#waybar > box {
     color: #eb4d4b;
 }
 
+
+/* -- Tray -- */
 #tray {
     padding: 0 6px;
 }
@@ -88,19 +108,25 @@ window#waybar > box {
     color: #ffbe61;
 }
 
+
+/* -- Workspaces */
 #workspaces button {
-    color: #888888;
+    color: #ffffff;
     padding: 0 5px;
+    border-radius: 15px 4px 15px 4px;
+
+    background-color: #1c3a4f;
 }
+
 #workspaces button.focused {
     background-color: #51a2da;
-    color: #ffffff;
-    border-radius: 15px 4px 15px 4px;
 }
+
 #workspaces button.urgent {
     background-color: #eb4d4b;
 }
 
+/* -- MPris -- */
 #mpris {
     color: #ffffff;
     padding: 0 12px;
@@ -110,14 +136,22 @@ window#waybar > box {
     color: #555555;
 }
 
+/* -- Pulse Audio -- */
 #pulseaudio {
     color: #ffffff;
 }
-
 #pulseaudio.muted {
     color: #555555;
 }
 
+#pulseaudio.microphone {
+    color: #ffffff;
+}
+#pulseaudio.microphone.muted {
+    color: #555555;
+}
+
+/* == Customs == */
 #custom-menu {
     color: #ffffff;
     font-size: 16px;
