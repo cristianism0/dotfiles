@@ -8,7 +8,9 @@
   "margin-right": 20,
   "spacing": 10,
 
-  "modules-left": ["custom/menu", "custom/weather", "clock", "niri/workspaces"],
+  "modules-left": ["custom/menu",
+      //"custom/weather",
+      "clock", "niri/workspaces"],
 
   "modules-center": ["mpris"],
 
@@ -16,7 +18,7 @@
     "custom/sysinfo",
     "pulseaudio#microphone",
     "pulseaudio",
-    "bluetooth",
+    // "bluetooth",
     "tray",
     "network",
     "battery",
@@ -89,7 +91,6 @@
     "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
     "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
     "on-click": "bluetoothctl show | grep -q 'Powered: yes' && bluetoothctl power off || bluetoothctl power on",
-    "on-click-right": "bluetoothctl power off"
 },
 
 
@@ -114,8 +115,8 @@
       "vlc": "󰕼",
     },
     "status-icons": {
-      "playing": "󰐊",
-      "paused": "󰏤",
+      "playing": "󰏤",
+      "paused": "󰐊",
       "stopped": "󰎆",
     },
   },
@@ -144,7 +145,7 @@
 
 // -- Customs -- //
   "custom/menu": {
-    "format": "",
+    "format": "",//"󰭟",
     "on-click": "fuzzel",
   },
 
@@ -159,12 +160,12 @@
     "on-click": "wlogout",
   },
 
-  "custom/weather": {
-    "exec": "$HOME/.config/waybar/scripts/weather.sh",
-    "interval": 900,
-    "format": "{}",
-    "tooltip": false,
-  },
+  // "custom/weather": {
+  //   "exec": "$HOME/.config/waybar/scripts/weather.sh",
+  //   "interval": 900,
+  //   "format": "{}",
+  //   "tooltip": false,
+  // },
 
   "custom/sysinfo": {
     "exec": "$HOME/.config/waybar/scripts/sysinfo.sh",

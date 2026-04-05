@@ -50,20 +50,6 @@ layout {
         active-color "#3c6eb4"
         inactive-color "#0b162f"
     }
-
-    border {
-        width 4
-        active-color "#294172"
-        inactive-color "#1a1a1b"
-        urgent-color "#cedff5"
-    }
-
-    shadow {
-        softness 30
-        spread 5
-        offset x=0 y=5
-        color "#0007"
-    }
 }
 
 // for kde enviroments
@@ -71,10 +57,17 @@ layout {
 // spawn-at-startup "systemctl" "--user" "import-environment" "WAYLAND_DISPLAY" "XDG_CURRENT_DESKTOP" "XDG_SESSION_TYPE"
 // spawn-at-startup "ibus-daemon" "-rxrd"
 
-spawn-at-startup "waybar"
-spawn-at-startup "swaync"
+spawn-at-startup "qs" "-c" "noctalia-shell"
+// spawn-at-startup "waybar"
+// spawn-at-startup "swaync"
 spawn-at-startup "swaybg" "-i" "/home/cristian/dotfiles/wallpapers/blue-theme/nwall.jpg"
-spawn-at-startup "swayidle" "-w" "timeout" "300" "niri msg action power-off-monitors" "resume" "niri msg action power-on-monitors"
+// spawn-at-startup "swayidle" "-w" \ 
+//                  "timeout" "300" "swaylock -f -c 000000" \
+//                  "timeout" "301" "niri msg action power-off-monitors" \ 
+//                  "resume" "niri msg action power-on-monitors" \
+//                  "before-sleep" "swaylock -f -c 000000"
+// spawn-at-startup "blueman-applet"
+
 
 hotkey-overlay {
      skip-at-startup
@@ -91,13 +84,18 @@ window-rule {
     clip-to-geometry true
 }
 
+debug {
+    //noctalia
+    honor-xdg-activation-with-invalid-serial
+}
+
 
 binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
     Mod+T { spawn "alacritty"; }
-    Mod+D { spawn "fuzzel"; }
+    Mod+D { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "launcher" "toggle"; }
     Mod+B { spawn "brave-browser"; }
-    // Mod+Alt+L { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "sessionMenu" "lockAndSuspend"; }
+    Mod+Alt+L { spawn "swaylock"; }
     
     
     //Audio and Brightness volume -> playerctl and brightnessctl
@@ -119,7 +117,6 @@ binds {
     Mod+Q repeat=false { close-window; }
     Mod+F { maximize-column; }
     Mod+Shift+F { fullscreen-window; }
-    Mod+R { switch-preset-column-width; }
 
     Mod+Left  { focus-column-left; }
     Mod+Down  { focus-window-down; }
@@ -152,6 +149,7 @@ binds {
     Mod+Ctrl+Page_Up   { move-column-to-workspace-up; }
     Mod+Ctrl+U         { move-column-to-workspace-down; }
     Mod+Ctrl+I         { move-column-to-workspace-up; }
+    
     Mod+1 { focus-workspace 1; }
     Mod+2 { focus-workspace 2; }
     Mod+3 { focus-workspace 3; }
@@ -167,6 +165,15 @@ binds {
     Mod+Ctrl+3 { move-column-to-workspace 3; }
     Mod+Ctrl+4 { move-column-to-workspace 4; }
     Mod+Ctrl+5 { move-column-to-workspace 5; }
+
+    Mod+BracketLeft  { consume-or-expel-window-left; }
+    Mod+BracketRight { consume-or-expel-window-right; }
+    Mod+Comma  { consume-window-into-column; }
+    Mod+Period { expel-window-from-column; }
+
+    Mod+R { switch-preset-column-width; }
+    Mod+Shift+R { switch-preset-window-height; }
+    Mod+Ctrl+R { reset-window-height; }
 
     Mod+Minus { set-column-width "-10%"; }
     Mod+Equal { set-column-width "+10%"; }

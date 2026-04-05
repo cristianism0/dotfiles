@@ -1,15 +1,16 @@
 #!/bin/bash
 
-CITY="São Paulo"
-DATA=$(curl -sf "wttr.in/${CITY// /+}?format=%C+%t" 2>/dev/null)
+CITY="Brasilia"
+
+DATA=$(curl -sf -m 15 "http://wttr.in/${CITY}?format=j1" 2>/dev/null)
 
 if [ -z "$DATA" ]; then
     echo "󰼯 --"
-    exit
+    exit 0
 fi
 
-CONDITION=$(echo "$DATA" | sed 's/ [+-]*[0-9]*°C//' | tr '[:upper:]' '[:lower:]')
-TEMP=$(echo "$DATA" | grep -oP '[-]?\d+°C')
+CONDITION=$(echo "$DATA" | jq -r '.current_condition[0].weatherDesc[0].value' | tr '[:upper:]' '[:lower:]')
+TEMP=$(echo "$DATA" | jq -r '.current_condition[0].temp_C')
 
 case "$CONDITION" in
     *sunny*|*clear*)                ICON="󰖙" ;;
@@ -23,4 +24,4 @@ case "$CONDITION" in
     *)                              ICON="󰖔" ;;
 esac
 
-echo "$ICON $TEMP"
+echo "$ICON ${TEMP}°C"

@@ -5,7 +5,7 @@ Para usar o sway e baixar todos os items necessários:
 sudo dnf update && sudo dnf install \
 niri swayidle swaylock waybar swaybg swaync \
 brightnessctl playerctl pavucontrol \
-fuzzel alacritty fastfetch \
+fuzzel alacritty fastfetch blueman-applet\
 grim slurp wl-clipboard wireplumber btop --skip-unavailable
 ```
 

@@ -140,6 +140,7 @@ window#waybar > box {
 #pulseaudio {
     color: #ffffff;
 }
+
 #pulseaudio.muted {
     color: #555555;
 }
@@ -147,10 +148,11 @@ window#waybar > box {
 #pulseaudio.microphone {
     color: #ffffff;
 }
-#pulseaudio.microphone.muted {
+
+#pulseaudio.microphone.muted,
+#pulseaudio.microphone.source-muted {
     color: #555555;
 }
-
 /* == Customs == */
 #custom-menu {
     color: #ffffff;
