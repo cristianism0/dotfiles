@@ -27,7 +27,7 @@
         },
         {
             "type": "packages",
-            "format": "{} (dnf)", 
+            "format": "{} (pacman)", 
             "key": " ├ 󰏖 ",
             "keyColor": "34",  
         },

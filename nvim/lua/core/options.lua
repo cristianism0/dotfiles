@@ -8,7 +8,7 @@ vim.o.relativenumber = true
 vim.o.clipboard = 'unnamedplus'
 
 -- Wrap Line (display full line)
-vim.o.wrap = false
+vim.o.wrap = true 
 
 -- Linebreak (default: false), no effect if wrap is false.
 vim.o.linebreak = true

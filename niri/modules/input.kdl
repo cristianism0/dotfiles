@@ -1,0 +1,19 @@
+
+input {
+    keyboard {
+        xkb {
+            layout "br"
+        }
+        numlock
+    }
+
+    touchpad {
+        tap
+        natural-scroll
+        disabled-on-external-mouse
+    }
+
+    focus-follows-mouse
+    max-scroll-amount="0%"
+    workspace-auto-back-and-forth 
+}
