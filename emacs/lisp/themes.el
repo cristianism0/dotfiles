@@ -8,7 +8,7 @@
 
    (doom-themes-org-config))
  ;; Choose theme here:
- (load-theme 'doom-ir-black t)
+ (load-theme 'doom-tokyo-night t)
 
 ;;; Modeline
 (use-package doom-modeline

@@ -1,4 +1,3 @@
-    
     layout {
         gaps 8
         center-focused-column "never" 
@@ -12,11 +11,19 @@
         }
 
         struts {}
+
+        focus-ring {
+            width 6 
+            active-color "#A63D2D"
+            inactive-color "#D9CDB8"
+            urgent-color "#5E4033"
+        }
     }
     
     window-rule {
-        geometry-corner-radius 20 
+        geometry-corner-radius 12 
         clip-to-geometry true
+        draw-soft-shadow true
     }
 
     window-rule {

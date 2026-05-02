@@ -1,10 +1,3 @@
-#+TITLE: Emacs Literate 
-#+AUTHOR: cristian
-#+PROPERTY: header-args :tangle yes
-
-* System & UI Cores
-
-#+BEGIN_SRC emacs-lisp
 ;; Basics
 (setq inhibit-startup-message t)
 (display-battery-mode 1)
@@ -14,12 +7,7 @@
 ;; Backup management - Keep the working directory clean
 (setq backup-directory-alist `((".*" . ,temporary-file-directory)))
 (setq auto-save-file-name-transforms `((".*" ,temporary-file-directory t)))
-#+END_SRC
 
-* Packages
-Setup for MELPA and use-package bootstrap.
-
-#+BEGIN_SRC emacs-lisp
 (require 'package)
 (setq package-archives '(("melpa" . "https://melpa.org/packages/")
                          ("elpa"  . "https://elpa.gnu.org/packages/")))
@@ -36,12 +24,7 @@ Setup for MELPA and use-package bootstrap.
   :if (memq window-system '(mac ns x))
   :config
   (exec-path-from-shell-initialize))
-#+END_SRC
 
-* UI Style
-Theme, Modeline, and Typography.
-
-#+BEGIN_SRC emacs-lisp
 (use-package doom-themes
   :config
   (setq doom-themes-enable-bold t
@@ -71,11 +54,7 @@ Theme, Modeline, and Typography.
 
 ;; Typography
 (set-face-attribute 'default nil :family "Iosevka Nerd Font" :height 150)
-#+END_SRC
 
-* Completion & Navigation
-
-#+BEGIN_SRC emacs-lisp
 (use-package vertico
   :custom (vertico-cycle t)
   :init (vertico-mode))
@@ -88,11 +67,7 @@ Theme, Modeline, and Typography.
   :custom
   (completion-styles '(orderless basic))
   (completion-category-overrides '((file (styles basic partial-completion)))))
-#+END_SRC
 
-* IDE & Languages
-
-#+BEGIN_SRC emacs-lisp
 (use-package markdown-mode)
 (use-package magit)
 
@@ -110,11 +85,7 @@ Theme, Modeline, and Typography.
 (add-hook 'rust-mode-hook 'eglot-ensure)
 (add-hook 'python-mode-hook 'eglot-ensure)
 (add-hook 'c-mode-hook 'eglot-ensure)
-#+END_SRC
 
-* Org Mode & Aesthetics
-
-#+BEGIN_SRC emacs-lisp
 ;; Disable line numbers for specific modes
 (dolist (mode '(org-mode-hook vterm-mode-hook term-mode-hook 
                 shell-mode-hook eshell-mode-hook))
@@ -130,4 +101,3 @@ Theme, Modeline, and Typography.
 (use-package rainbow-mode
   :diminish
   :hook (org-mode prog-mode))
-#+END_SRC

@@ -22,7 +22,6 @@ IGNORED_FILES=(
     "README.md"
     "wallpapers"
     "cava"
-    "zsh"
     ".zshenv"
     $(basename -- "${BASH_SOURCE[0]}")
 )
@@ -122,7 +121,6 @@ process_items "$HOME" "home directory" "${TO_HOME[@]}"
 # to add new path we can create a list
 # files=("file1" "file2" "file3")
 # process_items "destination" "destination directory" "${files[@]}"
-
 
 echo -e "\n${GREEN}Done!${NC}"
 

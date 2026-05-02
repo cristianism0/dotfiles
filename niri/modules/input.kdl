@@ -1,19 +1,17 @@
-
 input {
     keyboard {
         xkb {
-            layout "br"
+            layout "br,us"
+            variant ",intl"      
+            options "grp:alt_shift_toggle"
         }
         numlock
     }
 
     touchpad {
         tap
+        dwt
         natural-scroll
-        disabled-on-external-mouse
+        // disabled-on-external-mouse
     }
-
-    focus-follows-mouse
-    max-scroll-amount="0%"
-    workspace-auto-back-and-forth 
 }

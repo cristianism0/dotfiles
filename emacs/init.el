@@ -2,13 +2,11 @@
 (setq inhibit-startup-message t)
 
 ;;; Open in fullscreen
-(add-to-list 'initial-frame-alist '(alpha-background . 75)'(fullscreen . maximized))
-
-;;; Show battery
-(display-battery-mode 1)
+;; (add-to-list 'initial-frame-alist '(alpha-background . 75)'(fullscreen . maximized))
 
 ;;; Remove backup files
-(setq make-backup-files nil)
+(setq backup-directory-alist `((".*" . ,temporary-file-directory)))
+(setq auto-save-file-name-transforms `((".*" ,temporary-file-directory t)))
 
 ;;; Turn off emacs auto identation
 (electric-indent-mode -1)
@@ -37,9 +35,9 @@
 (load-file "~/.config/emacs/lisp/ide.el")
 
 ;;; Enable System PATH
-(use-package exec-path-from-shell)
-(when (memq window-system '(mac ns x))
-  (exec-path-from-shell-initialize))
+;; (use-package exec-path-from-shell)
+;; (when (memq window-system '(mac ns x))
+;; (exec-path-from-shell-initialize))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -58,3 +56,15 @@
  )
 
 
+;;; init.el --- High performance literate loader
+; (defun my/display-tangle-config ()
+;   "Tangles the config.org file only if it is newer than config.el."
+;   (let ((org-file (expand-file-name "config.org" user-emacs-directory))
+;         (el-file (expand-file-name "config.el" user-emacs-directory)))
+;     (when (or (not (file-exists-p el-file))
+;               (file-newer-than-file-p org-file el-file))
+;       (require 'org)
+;       (org-babel-tangle-file org-file el-file "emacs-lisp"))
+;     (load-file el-file)))
+;
+; (my/display-tangle-config)

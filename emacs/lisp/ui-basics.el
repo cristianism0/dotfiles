@@ -1,4 +1,4 @@
-;; UI features
+;;; UI features:
 (tool-bar-mode   -1)	                   ; Hide tools bar
 (menu-bar-mode   -1)	                   ; Hide menu bar
 (scroll-bar-mode -1)	                   ; Hide scroll bar
@@ -12,7 +12,9 @@
 (electric-pair-mode 1)                     ; Enable auto pair brackets
 (transient-mark-mode 1)                    ; Shows the active region
 (global-display-line-numbers-mode 1)       ; Show Number
-(setq display-line-numbers-type 'relative) ; Make numbers relative
+(setq display-line-numbers-type 't)        ; Make numbers relative
+(setq frame-resize-pixelwise t)            ; Resize on WM/Tillings
+(display-battery-mode 0)                   ; Show the battery in the modeline
 
-;;; Fonts
-(set-face-attribute 'default nil :family "Fira Code Nerd Font" :height 175)
+;;; Fonts:
+(set-face-attribute 'default nil :family "Iosevka Nerd Font" :height 150)
