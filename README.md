@@ -2,34 +2,22 @@
 Para usar o sway e baixar todos os items necessários:
 
 ```bash
-sudo dnf update && sudo dnf install \
+sudo pacman -Syu && sudo pacman -S \
 niri swayidle swaylock waybar swaybg swaync \
 brightnessctl playerctl pavucontrol \
 fuzzel alacritty fastfetch blueman-applet\
-grim slurp wl-clipboard wireplumber btop --skip-unavailable
+grim slurp wl-clipboard wireplumber btop
 ```
 
 Para os editores de texto:
 
 ```bash
-sudo dnf install emacs nvim
+sudo pacman -S emacs nvim
 ```
-É necessário ainda baixar o Fira Code Nerd Font e o Brave Browser.
-Brave:
+É necessário ainda baixar o Iosevka Nerd
 ```bash
-curl -fsS https://dl.brave.com/install.sh | sh
+sudo pacman -S ttf-iosevka-nerd
 ```
-
-Fira Code fontes:
-```bash
-mkdir -p ~/.local/share/fonts
-wget -P ~/.local/share/fonts https://github.com/ryanoasis/nerd-fonts/releases/latest/download/FiraCode.zip
-cd ~/.local/share/fonts
-unzip FiraCode.zip
-rm FiraCode.zip
-fc-cache -fv
-```
-
 ## Setup
 
 1. Clona o repositório

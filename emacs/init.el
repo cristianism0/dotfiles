@@ -2,7 +2,7 @@
 (setq inhibit-startup-message t)
 
 ;;; Open in fullscreen
-;; (add-to-list 'initial-frame-alist '(alpha-background . 75)'(fullscreen . maximized))
+(add-to-list 'initial-frame-alist '(alpha-background . 85)'(fullscreen . maximized))
 
 ;;; Remove backup files
 (setq backup-directory-alist `((".*" . ,temporary-file-directory)))
@@ -44,10 +44,12 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(c-default-style
+   '((c-mode . "k&r") (java-mode . "java") (awk-mode . "awk") (other . "gnu")))
  '(package-selected-packages nil)
  '(package-vc-selected-packages
    '((eglot-booster :vc-backend Git :url
-                    "https://github.com/jdtsmith/eglot-booster.git"))))
+		    "https://github.com/jdtsmith/eglot-booster.git"))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

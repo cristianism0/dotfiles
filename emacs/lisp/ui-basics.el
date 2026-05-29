@@ -8,13 +8,16 @@
 (savehist-mode   +1)	                   ; Enable history saving
 (delete-selection-mode t)                  ; Delete a selected line if write on it
 (global-visual-line-mode t)                ; Line break
-(setq-default indent-tabs-mode nil) 	   ; Space indentations
+(setq-default indent-tabs-mode t) 	   ; Space indentations
 (electric-pair-mode 1)                     ; Enable auto pair brackets
 (transient-mark-mode 1)                    ; Shows the active region
 (global-display-line-numbers-mode 1)       ; Show Number
 (setq display-line-numbers-type 't)        ; Make numbers relative
 (setq frame-resize-pixelwise t)            ; Resize on WM/Tillings
 (display-battery-mode 0)                   ; Show the battery in the modeline
+(setq-default fill-column 80)              ; Fix a line on 80's colummn
 
 ;;; Fonts:
 (set-face-attribute 'default nil :family "Iosevka Nerd Font" :height 150)
+
+(add-hook 'before-save-hook #'delete-trailing-whitespace)
