@@ -2,6 +2,35 @@
 
 FILE_LOCATE="$HOME/.config/zsh/aliases.zsh"
 
+# ------------- Functions ----------------- #
+compile() {gcc "$1" -o "${1%.c}" && ./"$1"}
+add-alias() {
+    local aliase="${1}='${@:2}'"
+
+    if [[ -z "$1" ]]; then
+        echo "Alias cannot be empty."
+        echo "Use: add-alias name 'function'"
+        return 1
+    fi
+    if [[ $# -lt 2 ]]; then
+        echo "Format error. Need two arguments: name and function."
+        echo "Use: add-alias name function"
+        return 1
+    fi
+    if grep -qF "alias ${aliase}" "$FILE_LOCATE"; then
+        echo "Alias already exists in file."
+        return 1
+    fi
+    if [[ ! "$aliase" =~ "^[^=]+='[^']+'$" ]]; then
+        echo "Format error. Use: name function"
+        return 1
+    fi
+
+    echo "alias ${aliase}" >> "$FILE_LOCATE"
+    echo "Alias 'alias ${aliase}' added successfully."
+}
+
+
 # ------------- Alias ----------------- #
 alias shutdown='shutdown now'
 alias update='sudo dnf update'
@@ -33,27 +62,3 @@ alias ports='ss -tulnp'
 alias path='echo $PATH | tr ":" "\n"'
 alias reload='exec zsh'
 alias zshrc='$EDITOR ~/.zshrc'
-
-# ------------- Functions ----------------- #
-compile() {gcc "$1" -o "${1%.c}" && ./"$1"}
-add-alias() {
-    local aliase="$1"
-    
-    if [[ -z "$1" ]]; then
-        echo "Alias cannot be empty."
-        echo "Use: add-alias name='function'"
-        return 1
-    fi
-    if grep -qF "alias ${aliase}" "$FILE_LOCATE"; then
-        echo "Alias already exists in file."
-        return 1
-    fi
-    if [[ ! "$aliase" =~ "^[^=]+='[^']+'$" ]]; then
-        echo "Format error. Use: name='function'"
-        return 1
-    fi
-
-    echo "alias ${1}" >> "$HOME/.config/zsh/aliases.zsh"
-    echo "Alias 'alias ${aliase}' added successfully.
-}
-
