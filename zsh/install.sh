@@ -12,6 +12,8 @@ detect_distro() {
     echo "debian"
   elif command -v pacman &>/dev/null; then
     echo "arch"
+  elif command -v dnf &>/dev/null; then
+      echo "fedora"
   else
     error "Distro não suportada. Instale os pacotes manualmente."
   fi
@@ -24,12 +26,15 @@ install_deps() {
   if [[ $DISTRO == "debian" ]]; then
     sudo apt-get update -qq
     sudo apt-get install -y zsh git curl
-  else
+elif [[ $DISTRO == "fedora" ]]; then
+    sudo dnf update
+    sudo dnf install -y zsh curl git
+else
     sudo pacman -Sy --noconfirm zsh git curl
   fi
 }
 
-info "Instalando dependências..."
+info "Installing dependencies..."
 install_deps
 
 ZSH_PLUGINS="$HOME/.zsh/plugins"
@@ -61,13 +66,10 @@ cp "$SCRIPT_DIR/.zshenv" "$HOME/.zshenv"
 cp "$SCRIPT_DIR/.zshrc"  "$HOME/.zshrc"
 info "Arquivos de configuração copiados."
 
-# --- Compila completion cache (antecipado) ------------------------------------
 zsh -c 'autoload -Uz compinit && compinit -d ~/.zcompdump' 2>/dev/null || true
 
-# --- Define ZSH como shell padrão ---------------------------------------------
-if [[ "$SHELL" != "$(which zsh)" ]]; then
-  warn "Definindo ZSH como shell padrão (requer senha)..."
-  chsh -s "$(which zsh)"
-fi
+# if [[ "$SHELL" != "$(which zsh)" ]]; then
+#   warn "Definindo ZSH como shell padrão (requer senha)..."
+#   chsh -s "$(which zsh)"
+# fi
 
-info "✔ Instalação concluída! Abra um novo terminal ou execute: exec zsh"

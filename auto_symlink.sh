@@ -1,7 +1,5 @@
 #!/bin/bash
 DRY_RUN=false
-# as the loops
-# args passed via terminal will counter in position
 if [[ "$1" == "--dry-run" ]]; then
     DRY_RUN=true
 fi
@@ -23,6 +21,14 @@ IGNORED_FILES=(
     "wallpapers"
     "cava"
     ".zshenv"
+    "emacs"
+    "scripts"
+    "swaync"
+    "waybar"
+    "fuzzel"
+    "kitty"
+    "swaylock"
+    "fastfetch"
     $(basename -- "${BASH_SOURCE[0]}")
 )
 
@@ -98,7 +104,7 @@ process_items() {
     # * returns an array with all the files on our WORK_DIR
     shift 2
     local items=("$@")
-    
+
     echo -e "\n${BLUE}Processing $description...${NC}"
     for item in "${items[@]}"; do
         # in this case we will not use [[]]

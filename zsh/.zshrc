@@ -28,21 +28,13 @@ autoload -Uz compinit
 [[ "$ZSH_COMPDUMP" -nt "${ZSH_COMPDUMP}.zwc" ]] && \
   zcompile "$ZSH_COMPDUMP" 2>/dev/null
 
-# --- Estilo do completion ---
 zstyle ':completion:*' menu select          
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}' 'r:|[._-]=* r:|=*' 
-zstyle ':completion:*' group-name ''                   
+# zstyle ':completion:*' group-name ''                   
 zstyle ':completion:*:descriptions' format '[%d]'     
-zstyle ':completion:*:warnings' format 'Nada encontrado para: %d'
 zstyle ':completion:*' use-cache yes                 
 zstyle ':completion:*' cache-path "$XDG_CACHE_HOME/zsh/compcache"
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
-
-source "$HOME/.zsh/plugins/fzf-tab/fzf-tab.plugin.zsh"
-
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza --color=always --icons $realpath 2>/dev/null || ls --color=always $realpath'
-zstyle ':fzf-tab:*' fzf-flags --height=50% --layout=reverse --border=rounded
-zstyle ':fzf-tab:*' switch-group ',' '.'
 
 HISTSIZE=100000
 SAVEHIST=100000
@@ -80,6 +72,9 @@ bindkey "^[[A"  up-line-or-beginning-search
 bindkey "^[[B"  down-line-or-beginning-search
 bindkey "^P"    up-line-or-beginning-search
 bindkey "^N"    down-line-or-beginning-search
+bindkey "^[[1;5D" backward-word
+bindkey "^[[1;5C" forward-word
+
 
 autoload -Uz edit-command-line
 zle -N edit-command-line
@@ -92,8 +87,8 @@ setopt PROMPT_SUBST
 
 zstyle ':vcs_info:*'          enable git
 zstyle ':vcs_info:*'          check-for-changes true
-zstyle ':vcs_info:git:*'      stagedstr   "%F{green}●%f"   # tem staged
-zstyle ':vcs_info:git:*'      unstagedstr "%F{yellow}●%f"  # tem unstaged
+zstyle ':vcs_info:git:*'      stagedstr   "%F{green} ● %f"   # tem staged
+zstyle ':vcs_info:git:*'      unstagedstr "%F{yellow} ● %f"  # tem unstaged
 zstyle ':vcs_info:git:*'      formats     " %F{magenta}(%b)%f%c%u"
 zstyle ':vcs_info:git:*'      actionformats " %F{magenta}(%b|%a)%f%c%u"
 
@@ -101,47 +96,19 @@ precmd() { vcs_info }
 
 _exit_code() {
   local code=$?
-  (( code != 0 )) && echo " %F{red}✘$code%f"
+  (( code != 0 )) && echo " %F{red}✘ $code%f"
 }
 
-# line 1: user@host  diretório  (branch●)  ✘código
+# line 1: user@host  dir  (branch●)  ✘ code
 # line 2: λ
 PROMPT='%F{cyan}%n@%m%f %F{blue}%~%f${vcs_info_msg_0_}$(_exit_code)
-%F{yellow}λ%f '
+%F{magenta}λ%f '
 
 RPROMPT='%F{240}%*%f'
 
-# grep colorido
-alias grep='grep --color=auto'
+# Load alias
+source "$HOME/.config/zsh/aliases.zsh"
 
-# cd navegação
-alias ..='cd ..'
-alias ...='cd ../..'
-alias ....='cd ../../..'
-alias -- -='cd -'
-
-# Git shortcuts
-alias g='git'
-alias ga='git add'
-alias gc='git commit -v'
-alias gp='git push'
-alias gs='git status -sb'
-alias gl='git log --oneline --graph --decorate -20'
-alias gd='git diff'
-
-
-alias ip='ip -c'
-alias df='df -hT'
-alias du='du -sh'
-alias free='free -h'
-alias ports='ss -tulnp'
-alias path='echo $PATH | tr ":" "\n"'
-alias reload='exec zsh'
-alias zshrc='$EDITOR ~/.zshrc'
-
-source "aliases.zsh"
-
-# zsh-autosuggestions: sugere baseado no histórico (cinza, → ou End para aceitar)
 source "$HOME/.zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)  
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20            
@@ -149,7 +116,6 @@ ZSH_AUTOSUGGEST_USE_ASYNC=1
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#6c7086"
 
 source "$HOME/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-
 ZSH_HIGHLIGHT_STYLES[command]='fg=cyan,bold'
 ZSH_HIGHLIGHT_STYLES[builtin]='fg=cyan'
 ZSH_HIGHLIGHT_STYLES[alias]='fg=cyan'

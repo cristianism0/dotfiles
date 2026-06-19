@@ -1,7 +1,7 @@
 
 // ────── Niri Config ────── \\
 
-// OBS: This Niri's config setup is heavily inspired by CachyOS Niri's config.
+// This Niri's config setup is heavily inspired by CachyOS Niri's config.
 // You can check the source on their github: https://github.com/CachyOS/cachyos-niri-settings
 
 include "./modules/env.kdl"

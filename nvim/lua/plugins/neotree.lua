@@ -13,7 +13,6 @@ return {
     opts = {
     -- options go here
          },
-        
     config = function()
         local opts = {noremap = true, silent = true}
         vim.keymap.set('n', '\\', '<cmd>Neotree reveal<CR>', opts)

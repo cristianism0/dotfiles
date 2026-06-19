@@ -1,16 +1,10 @@
-# --- Distro detection ---
-if   command -v apt-get &>/dev/null; then export PKG_MANAGER="apt"
-elif command -v pacman  &>/dev/null; then export PKG_MANAGER="pacman"
-fi
-
 # --- XDG Base Directory ---
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_STATE_HOME="$HOME/.local/state"
 
-# #.zcompdump, .zsh_history etc... into XDG state directories instead of the home
-export ZDOTDIR="$HOME/.config/zsh"              # .zshrc location
+export ZDOTDIR="$HOME/.config/zsh"
 export ZSH_COMPDUMP="$XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION"
 export HISTFILE="$XDG_STATE_HOME/zsh/history"
 
@@ -26,17 +20,14 @@ path=(
 )
 export PATH
 
-# --- Editor & pager ---
 export EDITOR="${EDITOR:-nvim}"
 export VISUAL="$EDITOR"
 export PAGER="less"
-export LESS="-RFX"       # -R: cores ANSI | -F: sai se cabe na tela | -X: não limpa
+export LESS="-RFX"
 
-# --- Locale ---
 export LANG="${LANG:-pt_BR.UTF-8}"
 export LC_ALL="${LC_ALL:-pt_BR.UTF-8}"
 
-# FZF — pesquisa fuzzy usada em fzf-tab e Ctrl-R
 export FZF_DEFAULT_OPTS="
   --height=40%
   --layout=reverse
@@ -58,3 +49,4 @@ fi
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
 export NEXT_TELEMETRY_DISABLED=1
 export GATSBY_TELEMETRY_DISABLED=1
+. "$HOME/.cargo/env"
