@@ -2,7 +2,7 @@ input {
     keyboard {
         xkb {
             layout "br,us"
-            variant ",intl"      
+            variant ",intl"
             options "grp:alt_shift_toggle"
         }
         numlock
@@ -11,7 +11,7 @@ input {
     touchpad {
         tap
         natural-scroll
-         // dwt
-        // disabled-on-external-mouse
+        //dwt
+        //disabled-on-external-mouse
     }
 }

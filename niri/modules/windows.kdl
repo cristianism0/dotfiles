@@ -1,43 +1,50 @@
-    layout {
-        gaps 8
-        center-focused-column "never" 
+layout {
+    gaps 8
+    center-focused-column "never"
 
-        background-color "transparent"
+    background-color "transparent"
 
-        preset-column-widths {
-            proportion 0.33333
-            proportion 0.5
-            proportion 0.66667
-        }
-
-        struts {}
-
-        focus-ring {
-            width 6 
-            active-color "#A63D2D"
-            inactive-color "#D9CDB8"
-            urgent-color "#5E4033"
-        }
-    }
-    
-    window-rule {
-        geometry-corner-radius 12 
-        clip-to-geometry true
+    preset-column-widths {
+        proportion 0.33333
+        proportion 0.5
+        proportion 0.66667
     }
 
-    window-rule {
-        match app-id="steam"
-        exclude title=r#"^[Ss]team$"#
-        open-floating true
-    }
+    struts {}
 
-    window-rule {
-       match app-id="steam" title=r#"^notificationtoasts_\d+_desktop$"#
-       default-floating-position x=10 y=10 relative-to="bottom-right"
-       open-focused false
+    focus-ring {
+        width 4
+        active-color "#ea9a97"
+        inactive-color "#6e6a86"
+        urgent-color "#eb6f92"
     }
+}
 
-    layer-rule {
-        match namespace="^noctalia-wallpaper*"
-        place-within-backdrop true
-    }
+window-rule {
+    geometry-corner-radius 12
+    clip-to-geometry true
+}
+
+window-rule {
+    match app-id="steam"
+    exclude title=r#"^[Ss]team$"#
+    open-floating true
+}
+
+window-rule {
+    match app-id="steam" title=r#"^notificationtoasts_\d+_desktop$"#
+    default-floating-position x=10 y=10 relative-to="bottom-right"
+    open-focused false
+}
+
+window-rule {
+    match app-id="dev.noctalia.Noctalia"
+    open-floating true
+    default-column-width { fixed 1080; }
+    default-window-height { fixed 920; }
+}
+
+layer-rule {
+    match namespace="^noctalia-wallpaper*"
+    place-within-backdrop true
+}
