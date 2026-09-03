@@ -1,23 +1,27 @@
-;;; Org Mode 
+;;; ord-mode.el --- Config the Org mode -*- lexical-binding: t; no-byte-compile: t-*-
+;;; Commentary:
+;; This file contain all configurations to all Org config, since roam to agenda.
 
-(dolist (mode '(org-mode-hook
-                vterm-mode-hook
-                term-mode-hook
-                shell-mode-hook
-                eshell-mode-hook))
-  (add-hook mode (lambda () (display-line-numbers-mode 0))))
+;;; Code:
+(use-package org
+  :ensure nil
+  :custom
+  (org-startup-folded 'content)
+  (org-ellipsis " ▾")
+  (org-pretty-entities t)
+  (org-src-fontify-natively t)
+  (org-src-tab-acts-natively t)
+  (org-confirm-babel-evaluate nil))
 
-(add-hook 'org-mode-hook 'org-indent-mode)
+(add-hook 'org-mode-hook #'org-indent-mode)
+(add-hook 'org-mode-hook #'visual-line-mode)
+(add-hook 'org-mode-hook (lambda () (display-line-numbers-mode 0)))
+
 (use-package org-bullets
-:custom
-(org-bullets-bullet-list '("▶" "▷" "◆" "◇" "▪" "▪" "▪")))
-(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+  :ensure t
+  :hook (org-mode . org-bullets-mode)
+  :custom
+  (org-bullets-bullet-list '("▶" "▷" "◆" "◇" "▪" "▪" "▪")))
 
-(use-package rainbow-delimiters
-    :hook ((prog-mode . rainbow-delimiters-mode)
-           (emacs-lisp-mode . rainbow-delimiters-mode)
-           (clojure-mode . rainbow-delimiters-mode)))
-
-(use-package rainbow-mode
-  :diminish
-  :hook org-mode prog-mode)
+(provide 'org-mode)
+;;; org-mode.el ends here;

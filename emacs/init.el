@@ -1,55 +1,55 @@
-;;; Hide startup message
+;;; init.el -- The emacs core -*- lexical-binding: t; no-byte-compile: t -*-
+;;; Commentary:
+;; This file is the heart of Emacs, here contain main configs that are not suitable for modularization.
+
+;;; Code:
+;; Hide startup message
 (setq inhibit-startup-message t)
 
-;;; Open in fullscreen
-(add-to-list 'initial-frame-alist '(alpha-background . 85)'(fullscreen . maximized))
-
-;;; Remove backup files
+;; Remove backup files
 (setq backup-directory-alist `((".*" . ,temporary-file-directory)))
 (setq auto-save-file-name-transforms `((".*" ,temporary-file-directory t)))
 
-;;; Turn off emacs auto identation
-(electric-indent-mode -1)
+;; Turn off emacs auto indentation - allow LSP only.
+(electric-indent-mode -1)                  ; Emacs builtin indent
+(recentf-mode 1)                           ; Enable recent files
+(savehist-mode   +1)	                   ; Enable history saving
 
-;;; Package.el
-;; Require and keep it up to date
+;; Package.el
 (require 'package)
-(setq package-archives '(("melpa" . "https://melpa.org/packages/")
-                         ("elpa"  . "https://elpa.gnu.org/packages/")))
-
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (package-initialize)
+
 (unless package-archive-contents
   (package-refresh-contents))
-
-(unless (package-installed-p 'use-package)
-  (package-install 'use-package))
 
 (require 'use-package)
 (setq use-package-always-ensure t)
 
-;;; Enable custom files
-(load-file "~/.config/emacs/lisp/themes.el")
-(load-file "~/.config/emacs/lisp/ui-basics.el")
-(load-file "~/.config/emacs/lisp/org-mode.el")
-(load-file "~/.config/emacs/lisp/motions.el")
-(load-file "~/.config/emacs/lisp/ide.el")
 
-;;; Enable System PATH
-;; (use-package exec-path-from-shell)
-;; (when (memq window-system '(mac ns x))
-;; (exec-path-from-shell-initialize))
+(use-package gcmh
+  :ensure t
+  :init
+  (setq gcmh-idle-delay 5
+        gcmh-high-cons-threshold (* 64 1024 1024))
+  :config
+  (gcmh-mode 1))
+
+;; This allow me to load all files inside ~/.config/emacs/lisp/ directory.
+(add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
+(require 'dashboard-conf)
+(require 'themes)
+(require 'ui-basics)
+(require 'motions)
+(require 'org-mode)
+(require 'ide)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(c-default-style
-   '((c-mode . "k&r") (java-mode . "java") (awk-mode . "awk") (other . "gnu")))
- '(package-selected-packages nil)
- '(package-vc-selected-packages
-   '((eglot-booster :vc-backend Git :url
-		    "https://github.com/jdtsmith/eglot-booster.git"))))
+ '(package-selected-packages nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -57,16 +57,4 @@
  ;; If there is more than one, they won't work right.
  )
 
-
-;;; init.el --- High performance literate loader
-; (defun my/display-tangle-config ()
-;   "Tangles the config.org file only if it is newer than config.el."
-;   (let ((org-file (expand-file-name "config.org" user-emacs-directory))
-;         (el-file (expand-file-name "config.el" user-emacs-directory)))
-;     (when (or (not (file-exists-p el-file))
-;               (file-newer-than-file-p org-file el-file))
-;       (require 'org)
-;       (org-babel-tangle-file org-file el-file "emacs-lisp"))
-;     (load-file el-file)))
-;
-; (my/display-tangle-config)
+;;; init.el ends here;

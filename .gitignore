@@ -41,3 +41,5 @@ places
 .yarn/
 
 cava/shaders/*
+tramp
+projects
