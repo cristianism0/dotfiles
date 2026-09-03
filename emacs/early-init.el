@@ -49,5 +49,12 @@
 (setq warning-inhibit-types '((files missing-lexbind-cookie)))
 (setq package-enable-at-startup t)
 
+
+;; Identify and use native compilation if its enabled
+(when (featurep 'native-compile)
+  (setq native-comp-jit-compilation t)
+  (setq native-comp-speed 2))
+
+
 (provide 'early-init)
 ;;; early-init.el ends here

@@ -2,7 +2,7 @@
 Para usar o sway e baixar todos os items necessários:
 
 ```bash
-sudo pacman -Syu && sudo pacman -S \
+sudo dnf update && sudo dnf install \
 niri swayidle swaylock waybar swaybg swaync \
 brightnessctl playerctl pavucontrol \
 fuzzel alacritty fastfetch blueman-applet\
@@ -12,11 +12,11 @@ grim slurp wl-clipboard wireplumber btop
 Para os editores de texto:
 
 ```bash
-sudo pacman -S emacs nvim
+sudo dnf install emacs nvim
 ```
 É necessário ainda baixar o Iosevka Nerd
 ```bash
-sudo pacman -S ttf-iosevka-nerd
+sudo dnf install iosevka-nerd-fonts
 ```
 ## Setup
 

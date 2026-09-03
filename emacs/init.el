@@ -17,10 +17,15 @@
 
 ;; Package.el
 (require 'package)
-(add-to-list 'package-archives '("melpa" . "https://melpa.org") t)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+(package-initialize)
+
+(unless package-archive-contents
+  (package-refresh-contents))
 
 (require 'use-package)
 (setq use-package-always-ensure t)
+
 
 (use-package gcmh
   :ensure t
@@ -32,6 +37,7 @@
 
 ;; This allow me to load all files inside ~/.config/emacs/lisp/ directory.
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
+(require 'dashboard-conf)
 (require 'themes)
 (require 'ui-basics)
 (require 'motions)

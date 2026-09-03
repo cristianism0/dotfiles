@@ -70,7 +70,6 @@
   :config
   (evil-mode 1)
   (setq evil-move-cursor-back nil))
-  ()
 
 (use-package evil-collection
   :after evil
@@ -78,37 +77,23 @@
   (evil-collection-init))
 
 (use-package general
+  :ensure t
   :after evil
   :config
-  (general-evil-setup t))
-
-  (general-create-definer my-doom-leader-def
+  (general-create-definer my-leader
     :states '(normal visual motion emacs)
     :keymaps 'override
-    :prefix "SPC"
-    :global-prefix "M-SPC")
+    :prefix "SPC")
 
-  (my-doom-leader-def
-    "."   '(find-file :which-key "Find file")
-    ","   '(switch-to-buffer :which-key "Switch buffer")
+  (my-leader
     "SPC" '(execute-extended-command :which-key "M-x")
-
-    "b"   '(:ignore t :which-key "buffer")
-    "b b" '(switch-to-buffer :which-key "Switch buffer")
-    "b d" '(kill-current-buffer :which-key "Kill buffer")
-    "b n" '(next-buffer :which-key "Next buffer")
-    "b p" '(previous-buffer :which-key "Previous buffer")
-
-    "f"   '(:ignore t :which-key "file")
+    "."   '(consult-recent-file :which-key "Recent files")
+    "f"   '(:ignore t :which-key "File")
     "f f" '(find-file :which-key "Find file")
-    "f s" '(save-buffer :which-key "Save file")
-    "f r" '(recentf-open-files :which-key "Recent files")
-
-    "w"   '(:ignore t :which-key "window")
-    "w s" '(split-window-below :which-key "Split horizontal")
-    "w v" '(split-window-right :which-key "Split vertical")
-    "w w" '(other-window :which-key "Other window")
-    "w d" '(delete-window :which-key "Delete window"))
+    "f s" '(save-buffer :which-key "Save buffer")
+    "b"   '(:ignore t :which-key "Buffer")
+    "b b" '(switch-to-buffer :which-key "Switch buffer")
+    "b k" '(kill-current-buffer :which-key "Kill buffer")))
 
 (provide 'motions)
 ;;; motions.el ends here;
