@@ -1,1 +1,3 @@
-spawn-sh-at-startup "noctalia"
+spawn-at-startup "noctalia"
+spawn-at-startup "systemctl" "--user" "start" "plasma-polkit-agent.service"
+spawn-at-startup "kdeinit6" "kwalletd6"

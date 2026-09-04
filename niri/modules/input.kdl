@@ -11,7 +11,7 @@ input {
     touchpad {
         tap
         natural-scroll
-        //dwt
+        // dwt
         //disabled-on-external-mouse
     }
 }
