@@ -46,6 +46,17 @@ return {
                         -- cmd = { "clangd", "--all-scopes-completion" }
                     })
                 end,
+                ["rust_analyzer"] = function()
+                    require("lspconfig").rust_analyzer.setup({
+                        inlayHints = {
+                            bindingModeHints = { enable = true },
+                            chainingHints = { enable = true },
+                            closingBraceHints = { enable = true },
+                            parameterHints = { enable = true },
+                            typeHints = { enable = true },
+                        }
+                    })
+                end,
 
                 ["lua_ls"] = function()
                     local lspconfig = require("lspconfig")

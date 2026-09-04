@@ -10,3 +10,5 @@ include "./modules/keybinds.kdl"
 include "./modules/input.kdl"
 include "./modules/animations.kdl"
 include "./modules/display.kdl"
+
+include "noctalia.kdl"
