@@ -1,22 +1,12 @@
 ## Dependencias
-Para usar o sway e baixar todos os items necessários:
+
+### Básico
+Editores de texto, fontes, WM e pacotes.
 
 ```bash
 sudo dnf update && sudo dnf install \
-niri swayidle swaylock waybar swaybg swaync \
-brightnessctl playerctl pavucontrol \
-fuzzel alacritty fastfetch blueman-applet\
-grim slurp wl-clipboard wireplumber btop
-```
-
-Para os editores de texto:
-
-```bash
-sudo dnf install emacs nvim
-```
-É necessário ainda baixar o Iosevka Nerd
-```bash
-sudo dnf install iosevka-nerd-fonts
+niri noctalia alacritty fastfetch btop ht-alegreya-fonts rsms-inter-fonts \
+emacs neovim zsh
 ```
 ## Setup
 
