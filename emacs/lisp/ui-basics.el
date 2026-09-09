@@ -1,4 +1,4 @@
-;;; ui-basics.el --- UI features -*- lexical-binding: t; no-byte-compile: t -*-
+;;; ui-basics.el --- UI features -*- lexical-binding: t; no-byte-compile: nil -*-
 
 ;;; Commentary:
 ;; This file is to define basic UI configratuions, since icos hidden to fonts choice.

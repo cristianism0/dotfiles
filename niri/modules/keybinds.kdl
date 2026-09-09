@@ -8,7 +8,7 @@ binds {
     Mod+Return                          hotkey-overlay-title="Open Terminal: Alacritty" { spawn "alacritty"; }
     Mod+D                               hotkey-overlay-title="Open App Launcher: noctalia launcher" { spawn-sh "noctalia msg panel-toggle launcher"; }
     Mod+B                               hotkey-overlay-title="Open Browser" { spawn-sh "brave-browser"; }
-    Mod+M                               hotkey-overlay-title="Open Emacs" { spawn "emacs"; }
+    Mod+M                               hotkey-overlay-title="Open Emacs" { spawn-sh "emacsclient -a 'emacs' -c -n"; }
     Mod+ALT+L                           hotkey-overlay-title="Lock Screen: noctalia lock" { spawn-sh "noctalia msg session-lock"; }
     Mod+Shift+Q                         hotkey-overlay-title="Settings: noctalia settings" { spawn-sh "noctalia msg settings-open"; }
 

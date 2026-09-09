@@ -43,3 +43,6 @@ places
 cava/shaders/*
 tramp
 projects
+emacs/tree-sitter
+*.elc
+*.eld

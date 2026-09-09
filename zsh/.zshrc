@@ -28,11 +28,11 @@ autoload -Uz compinit
 [[ "$ZSH_COMPDUMP" -nt "${ZSH_COMPDUMP}.zwc" ]] && \
   zcompile "$ZSH_COMPDUMP" 2>/dev/null
 
-zstyle ':completion:*' menu select          
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}' 'r:|[._-]=* r:|=*' 
-# zstyle ':completion:*' group-name ''                   
-zstyle ':completion:*:descriptions' format '[%d]'     
-zstyle ':completion:*' use-cache yes                 
+zstyle ':completion:*' menu select
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}' 'r:|[._-]=* r:|=*'
+# zstyle ':completion:*' group-name ''
+zstyle ':completion:*:descriptions' format '[%d]'
+zstyle ':completion:*' use-cache yes
 zstyle ':completion:*' cache-path "$XDG_CACHE_HOME/zsh/compcache"
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 
@@ -63,12 +63,12 @@ setopt NO_BEEP              # silencia o beep de erro
 setopt NO_FLOW_CONTROL      # libera Ctrl-S/Ctrl-Q para uso no readline
 
 
-bindkey -e 
+bindkey -e
 
 autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
 zle -N up-line-or-beginning-search
 zle -N down-line-or-beginning-search
-bindkey "^[[A"  up-line-or-beginning-search   
+bindkey "^[[A"  up-line-or-beginning-search
 bindkey "^[[B"  down-line-or-beginning-search
 bindkey "^P"    up-line-or-beginning-search
 bindkey "^N"    down-line-or-beginning-search
@@ -80,7 +80,7 @@ autoload -Uz edit-command-line
 zle -N edit-command-line
 bindkey "^X^E" edit-command-line
 
-autoload -Uz vcs_info       
+autoload -Uz vcs_info
 autoload -Uz colors && colors
 
 setopt PROMPT_SUBST
@@ -110,9 +110,9 @@ RPROMPT='%F{240}%*%f'
 source "$HOME/.config/zsh/aliases.zsh"
 
 source "$HOME/.zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
-ZSH_AUTOSUGGEST_STRATEGY=(history completion)  
-ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20            
-ZSH_AUTOSUGGEST_USE_ASYNC=1                  
+ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
+ZSH_AUTOSUGGEST_USE_ASYNC=1
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#6c7086"
 
 source "$HOME/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
