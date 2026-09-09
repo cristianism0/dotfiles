@@ -1,4 +1,4 @@
-;;; themes.el --- Manage themes and icons -*- lexical-binding: t; no-byte-compile: t -*-
+;;; themes.el --- Manage themes and icons -*- lexical-binding: t; no-byte-compile: nil -*-
 ;;; Commentary:
 ;; This file will define themes: General theme, modeline theme, delimiters, ligatures, icons.
 
@@ -9,14 +9,8 @@
 ;;(add-to-list 'initial-frame-alist '(fullscreen . maximized))
 
 ;; Themes
-(use-package doom-themes
-  :ensure t
-  :custom
-  (doom-themes-enable-bold t)
-  (doom-themes-enable-italic t)
-  :config
-  (doom-themes-org-config)
-  (load-theme 'doom-ayu-mirage t))
+(add-to-list 'custom-theme-load-path (expand-file-name "themes" user-emacs-directory))
+(load-theme 'doom-rose-pine t)
 
 ;; Icons & Modeline
 (use-package nerd-icons
@@ -24,7 +18,7 @@
 
 (use-package doom-modeline
   :ensure t
-  :init (doom-modeline-mode 1)
+  :hook (after-init . doom-modeline-mode)
   :custom
   (doom-modeline-height 28)
   (doom-modeline-bar-width 4)

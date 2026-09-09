@@ -1,4 +1,4 @@
-;;; ord-mode.el --- Config the Org mode -*- lexical-binding: t; no-byte-compile: t-*-
+;;; ord-mode.el --- Config the Org mode -*- lexical-binding: t; no-byte-compile: nil -*-
 ;;; Commentary:
 ;; This file contain all configurations to all Org config, since roam to agenda.
 

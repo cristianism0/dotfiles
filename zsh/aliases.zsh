@@ -36,6 +36,7 @@ alias shutdown='shutdown now'
 alias update='sudo dnf update'
 alias venv='source .venv/bin/activate'
 alias vim='nvim'
+alias em='emacsclient -t'
 
 alias grep='grep --color=auto'
 

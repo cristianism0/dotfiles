@@ -7,7 +7,7 @@
 ;;; Code:
 ;; Only trigger the GC when there is something to clean.
 (setq gc-cons-threshold (* 256 1024 1024)
-      gc-cons-percentage 1.0)
+      gc-cons-percentage 0.6)
 
 ;; Set a permanent, healthy post-boot threshold (32MB) to prevent sudden freezes.
 (dolist (hook '(after-init-hook emacs-startup-hook))
@@ -28,7 +28,10 @@
 (setq load-prefer-newer nil)
 (setq auto-mode-case-fold nil)
 
-;; Forces the meny, tool and scroll bar to be disabled on the frame before the window is drawn eliminating flickering.
+;; Forces the menu, tool and scroll bar to be disabled on the frame before the window is drawn eliminating flickering.
+(push '(menu-bar-lines . 0) default-frame-alist)
+(push '(tool-bar-lines . 0) default-frame-alist)
+(push '(vertical-scroll-bars . nil) default-frame-alist)
 
 ;; Stops Emacs from recalculating dimensions on start-up.
 (setq frame-inhibit-implied-resize t)
@@ -55,6 +58,9 @@
   (setq native-comp-jit-compilation t)
   (setq native-comp-speed 2))
 
+;; Add background color to prevent that white screen flashbang.
+(add-to-list 'default-frame-alist '(background-color . "#191724"))
+(add-to-list 'initial-frame-alist '(background-color . "#191724"))
 
 (provide 'early-init)
 ;;; early-init.el ends here
