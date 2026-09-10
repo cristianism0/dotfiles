@@ -29,6 +29,7 @@ IGNORED_FILES=(
     "kitty"
     "swaylock"
     "fastfetch"
+    "fast_setup.sh"
     $(basename -- "${BASH_SOURCE[0]}")
 )
 

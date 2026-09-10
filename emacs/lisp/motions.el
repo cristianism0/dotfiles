@@ -75,11 +75,14 @@
   (evil-mode 1)
   (setq evil-move-cursor-back nil))
 
+;; Leave the direc standard
+(evil-set-initial-state 'dired-mode 'emacs)
+
 (use-package evil-collection
   :ensure t
   :after evil
   :config
-  (evil-collection-init '(dashboard)))
+  (evil-collection-init))
 
 ;; Comment (like vim-commentary): gcc comments a line, gc is the operator
 ;; (e.g. gcip comments a paragraph, gc + visual selection comments it).
