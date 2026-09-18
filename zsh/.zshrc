@@ -127,3 +127,6 @@ ZSH_HIGHLIGHT_STYLES[double-quoted-argument]='fg=yellow'
 ZSH_HIGHLIGHT_STYLES[comment]='fg=240'
 
 # zprof
+
+# opencode
+export PATH=/home/cristian/.opencode/bin:$PATH

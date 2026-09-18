@@ -3,7 +3,6 @@
 FILE_LOCATE="$HOME/.config/zsh/aliases.zsh"
 
 # ------------- Functions ----------------- #
-compile() {gcc "$1" -o "${1%.c}" && ./"$1"}
 add-alias() {
     local aliase="${1}='${@:2}'"
 
@@ -30,6 +29,16 @@ add-alias() {
     echo "Alias 'alias ${aliase}' added successfully."
 }
 
+compile() {gcc "$1" -o "${1%.c}" && ./"$1"}
+
+compasm() {
+    local otim="${2:-0}"
+    case "$otim" in
+        0|1|2|3) ;;
+        *) echo "erro: otimização inválida: $otim" >&2; return 1 ;;
+    esac
+    gcc "-O${otim}" -S -o "${1%.c}.s" "$1"
+}
 
 # ------------- Alias ----------------- #
 alias shutdown='shutdown now'

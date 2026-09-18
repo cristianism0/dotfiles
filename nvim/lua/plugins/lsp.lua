@@ -88,7 +88,14 @@ return {
                 end,
             }
         })
+        vim.lsp.config.hls = {
+            cmd = { 'haskell-language-server-wrapper', '--lsp' },
+            filetypes = { 'haskell', 'lhaskell', 'cabal' },
+            root_markers = { 'hie.yaml', 'cabal.project', 'stack.yaml', '.git' },
+            capabilities = capabilities,
+        }
 
+        vim.lsp.enable('hls')
         local cmp_select = { behavior = cmp.SelectBehavior.Select }
 
         cmp.setup({
