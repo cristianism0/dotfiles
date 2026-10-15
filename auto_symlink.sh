@@ -31,7 +31,10 @@ IGNORED_FILES=(
     $(basename -- "${BASH_SOURCE[0]}")
 )
 
-TO_HOME=(".zshenv")
+TO_HOME=(
+    ".zshenv",
+    ".tmux.conf",        
+)
 
 #fallback
 mkdir -p "$TARGET_DIR"

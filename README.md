@@ -5,7 +5,7 @@ As principais dependencias são para o ambiente de trabalho e necessários para 
 
 A base da instalação:
 ```bash
-sudo dnf update -y && sudo dnf install alacritty niri noctalia, neovim, go, uv 
+sudo dnf update -y && sudo dnf install alacritty niri noctalia neovim go uv 
 ```
 
 Fira Code é a padrão, necessária para o Alacritty, as demais são apenas para o Emacs, se não for usar não são necessárias.

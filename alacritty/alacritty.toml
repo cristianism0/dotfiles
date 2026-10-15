@@ -1,3 +1,6 @@
+[general]
+import = ["~/.config/alacritty/themes/noctalia.toml"]
+
 [window]
 dimensions = { columns = 120, lines = 35 }
 padding = { x = 0, y = 0 }
@@ -25,7 +28,7 @@ multiplier = 3
 hide_when_typing = true
 
 [terminal.shell]
-program = "/usr/bin/zsh"
+program = "tmux"
 
 [[keyboard.bindings]]
 key = "Back"
