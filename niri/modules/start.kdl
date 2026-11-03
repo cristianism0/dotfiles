@@ -1,6 +1,4 @@
 spawn-at-startup "noctalia"
-spawn-sh-at-startup "emacs --daemon"
-
 
 // KDE - enviroment
 //spawn-sh-at-startup "systemctl--user start plasma-polkit-agent.service"
