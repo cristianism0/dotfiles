@@ -32,8 +32,8 @@ IGNORED_FILES=(
 )
 
 TO_HOME=(
-    ".zshenv",
-    ".tmux.conf",        
+    ".zshenv"
+    ".tmux.conf"        
 )
 
 #fallback
