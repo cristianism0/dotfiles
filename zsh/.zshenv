@@ -41,11 +41,6 @@ export FZF_DEFAULT_OPTS="
   --color=marker:#a6e3a1,spinner:#f5e0dc,header:#89dceb
 "
 
-# BAT 
-if   command -v bat    &>/dev/null; then export MANPAGER="sh -c 'col -bx | bat -l man -p'"
-elif command -v batcat &>/dev/null; then export MANPAGER="sh -c 'col -bx | batcat -l man -p'"
-fi
-
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
 export NEXT_TELEMETRY_DISABLED=1
 export GATSBY_TELEMETRY_DISABLED=1
