@@ -4,19 +4,23 @@ export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_STATE_HOME="$HOME/.local/state"
 
-export ZDOTDIR="$HOME/.config/zsh"
-export ZSH_COMPDUMP="$XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION"
-export HISTFILE="$XDG_STATE_HOME/zsh/history"
+export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 
-mkdir -p "$XDG_CACHE_HOME/zsh" "$XDG_STATE_HOME/zsh"
+ZSH_COMPDUMP="$XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION"
+HISTFILE="$XDG_STATE_HOME/zsh/history"
+
+[[ -d "$XDG_CACHE_HOME/zsh" ]] || mkdir -p "$XDG_CACHE_HOME/zsh"
+[[ -d "$XDG_STATE_HOME/zsh" ]] || mkdir -p "$XDG_STATE_HOME/zsh"
 
 # --- Path ---
 typeset -U path
 path=(
   "$HOME/.local/bin"
   "$HOME/bin"
+  "$HOME/.cargo/bin"
+  "$HOME/.opencode/bin"
   /usr/local/bin
-  $path            
+  $path
 )
 export PATH
 
@@ -26,7 +30,6 @@ export PAGER="less"
 export LESS="-RFX"
 
 export LANG="${LANG:-pt_BR.UTF-8}"
-export LC_ALL="${LC_ALL:-pt_BR.UTF-8}"
 
 export FZF_DEFAULT_OPTS="
   --height=40%
@@ -44,4 +47,3 @@ export FZF_DEFAULT_OPTS="
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
 export NEXT_TELEMETRY_DISABLED=1
 export GATSBY_TELEMETRY_DISABLED=1
-. "$HOME/.cargo/env"
