@@ -1,0 +1,31 @@
+[include]
+files = [
+    "/usr/share/umbriel/effects/border/pulse/effect.toml",
+    "appearance.toml",
+    "env.toml",
+    "input.toml",
+    "keybinds.toml",
+    "layout.toml",
+    "rules.toml",
+]
+
+[include.optional]
+files = []
+
+
+# General
+[general]
+autostart = ["noctalia"]
+# xwayland = false
+# Sharp X11 apps and games on scaled outputs; they see physical resolutions.
+# xwayland_native_resolution = true
+# Umbriel announces the X11 interface scale and cursor theme through XSETTINGS.
+# Turn this off to run your own manager, such as xsettingsd.
+# xwayland_xsettings = false
+# Select the monitor X11 games use as primary, using a connector or monitor identity from `umbriel outputs`.
+# xwayland_primary_output = "DP-1"
+# NVIDIA outputs without explicit synchronization wait for GPU rendering by default.
+# Disable this workaround if it causes stuttering or frame drops.
+# nvidia_sync_workaround = false
+# Modal dialogs hang on their parent window and follow it. Turn this off to keep them ordinary windows.
+# attach_modal_dialogs = false
