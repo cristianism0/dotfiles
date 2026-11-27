@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="base" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0a0a0f"/>
+      <stop offset="55%" stop-color="#101018"/>
+      <stop offset="100%" stop-color="#08080c"/>
+    </linearGradient>
+
+    <radialGradient id="glowBlue" cx="78%" cy="84%" r="65%">
+      <stop offset="0%" stop-color="#3d54b8" stop-opacity="0.55"/>
+      <stop offset="42%" stop-color="#222a5e" stop-opacity="0.26"/>
+      <stop offset="100%" stop-color="#0b0b10" stop-opacity="0"/>
+    </radialGradient>
+
+    <radialGradient id="glowViolet" cx="16%" cy="8%" r="60%">
+      <stop offset="0%" stop-color="#61439a" stop-opacity="0.32"/>
+      <stop offset="55%" stop-color="#2a1e42" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#0b0b10" stop-opacity="0"/>
+    </radialGradient>
+
+    <radialGradient id="vignette" cx="50%" cy="45%" r="78%">
+      <stop offset="50%" stop-color="#000000" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0.6"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1920" height="1080" fill="url(#base)"/>
+  <rect width="1920" height="1080" fill="url(#glowBlue)"/>
+  <rect width="1920" height="1080" fill="url(#glowViolet)"/>
+  <rect width="1920" height="1080" fill="url(#vignette)"/>
+</svg>

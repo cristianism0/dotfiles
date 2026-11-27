@@ -1,0 +1,6 @@
+[SddmGreeterTheme]
+Name=Love
+Description=Um tema simples para SDDM, inspirado no GDM.
+MainScript=Main.qml
+ConfigFile=theme.conf
+QtVersion=6

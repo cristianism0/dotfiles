@@ -2,6 +2,7 @@
 [keybinds]
 
 # Applications and session
+"Print" = { action = "spawn grim -g '$(slurp)' Imagens/fedora.png "}
 "Mod+Return" = { action = "spawn alacritty", repeat = false }
 "Mod+D" = "spawn noctalia msg panel-toggle launcher"
 "Mod+B" = "spawn brave"

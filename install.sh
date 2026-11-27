@@ -180,7 +180,7 @@ create_symlinks() {
         alacritty
         emacs
         fastfetch
-        niri
+        umbriel
         nvim
         zsh
     )
